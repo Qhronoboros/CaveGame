@@ -2,19 +2,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
+using System;
 
 [RequireComponent(typeof(MusicPlayer))]
 public class AudioManager : MonoBehaviour
 {
-	public MusicPlayer musicPlayer;
+	[NonSerialized] public MusicPlayer musicPlayer;
 	[SerializeField] private AudioDataSO _audioData;
 	private Dictionary<string, EventReference> _audioEventsDict = new Dictionary<string, EventReference>(); // Contains all eventReferences
 	private Dictionary<string, EventInstance> _audioInstancesDict = new Dictionary<string, EventInstance>(); // Contains pre instantiated eventInstances for specific sounds/music/ambience
 	private List<EventInstance> _eventInstanceList = new List<EventInstance>(); // List for stopping and destroying on deletion
 	private List<StudioEventEmitter> _eventEmitterList = new List<StudioEventEmitter>(); // List for stopping on deletion
-
-	// Temporary
-	[SerializeField] private bool _isInMainMenu;
 
 	private void Awake() 
 	{
@@ -52,11 +50,6 @@ public class AudioManager : MonoBehaviour
 		// PlayInstanceAtLocation("Wind", gameObject);
 		// // 0 is safe room, 1 is default, 2 is picking up photo, 3 is getting chased
 		// SetEventInstanceParameter("Heartbeat", "Heartbeat Frequency", 1);
-		
-		if (_isInMainMenu)
-		{
-			PlayInstanceAtLocation("BarMusic", gameObject);
-		}
 	}
 	
 	// Plays the audio once at location

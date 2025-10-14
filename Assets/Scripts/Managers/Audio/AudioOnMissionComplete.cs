@@ -9,13 +9,13 @@ public class AudioOnMissionComplete : MonoBehaviour
     {
         if (missionName == "") return;
         
-        GameManager.missionManager.SubscribeToMission(missionName, PlayAudio);
+        GameManager.gameEventManager.SubscribeToGameEvent(missionName, PlayAudio);
     }
 
     public void PlayAudio()
     {
         if (audioName == "") return;
         
-        GameManager.audioManager.PlayOneShot(audioName, GameManager.playerController.transform.position);
+        // GameManager.audioManager.PlayOneShot(audioName, GameManager.playerController.transform.position);
     }
 }

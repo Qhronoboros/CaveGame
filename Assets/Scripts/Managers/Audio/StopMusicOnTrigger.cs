@@ -6,10 +6,10 @@ public class StopMusicOnTrigger : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        if (!other.isTrigger && other.attachedRigidbody != null && other.attachedRigidbody.TryGetComponent(out PlayerController player))
-        {
-            GameManager.audioManager.musicPlayer.StopMusic();
-        }
+        // if (!other.isTrigger && other.attachedRigidbody != null && other.attachedRigidbody.TryGetComponent(out PlayerController player))
+        // {
+            // GameManager.audioManager.musicPlayer.StopMusic();
+        // }
     }
     
 }
