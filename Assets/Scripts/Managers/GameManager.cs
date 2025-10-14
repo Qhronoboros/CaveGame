@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 	// public static PauseMenu pauseMenu;
 	public static AudioManager audioManager;
 	public static GameEventManager gameEventManager;
+	public static SerialCommunication serialCommunication;
 	
 	public bool gameHasEnded = false;
 	

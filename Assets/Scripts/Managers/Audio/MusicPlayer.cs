@@ -6,10 +6,11 @@ using UnityEngine;
 [RequireComponent(typeof(AudioManager))]
 public class MusicPlayer : MonoBehaviour
 {
-	private AudioManager _audioManager;
 	public Dictionary<string, EventInstance> musicInstancesDict = new Dictionary<string, EventInstance>(); // Contains pre instantiated music eventInstances
     public string currentSongName;
     public EventInstance currentSong;
+    
+	private AudioManager _audioManager;
 
     private void Awake()
     {

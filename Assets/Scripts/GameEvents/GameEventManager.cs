@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameEventManager : MonoBehaviour
 {
+    public UnityEvent OnAnyGameEventTriggered;
+
     [SerializeField] private List<GameEvent> gameEvents = new List<GameEvent>();
     private Dictionary<string, GameEvent> gameEventDict = new Dictionary<string, GameEvent>();
-    public event Action OnAnyGameEventTriggered;
 
     private void Awake()
     {
@@ -14,7 +16,7 @@ public class GameEventManager : MonoBehaviour
             GameManager.gameEventManager = this;
 		else 
 		{
-			Debug.LogError($"A gameEventManager already exists, deleting self: {name}");
+			Debug.LogError($"A GameEventManager already exists, deleting self: {name}");
 			Destroy(gameObject);
 		}
     
