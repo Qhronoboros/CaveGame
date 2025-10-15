@@ -5,10 +5,10 @@ using UnityEngine.Events;
 
 public class GameEventManager : MonoBehaviour
 {
-    public UnityEvent OnAnyGameEventTriggered;
-
     [SerializeField] private List<GameEvent> gameEvents = new List<GameEvent>();
     private Dictionary<string, GameEvent> gameEventDict = new Dictionary<string, GameEvent>();
+
+    public UnityEvent GameEventTriggered;
 
     private void Awake()
     {
@@ -33,6 +33,7 @@ public class GameEventManager : MonoBehaviour
     {
         if (!GetGameEvent(gameEventTitle, out GameEvent gameEvent)) return;
         gameEvent.Trigger();
+        GameEventTriggered.Invoke();
     }
     
     public bool IsGameEventTriggered(string gameEventTitle)

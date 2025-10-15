@@ -7,12 +7,12 @@ using System.Threading;
 
 public class SerialCommunication : MonoBehaviour
 {
-    public UnityEvent<int> dataReceived;
-    
     private SerialPort _serialPort;
     private Thread _thread;
     private readonly object _lock = new();
     private bool _isLooping;
+
+    public UnityEvent<int> dataReceived;
 
     private void Awake()
     {
