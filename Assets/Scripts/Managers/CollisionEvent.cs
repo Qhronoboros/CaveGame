@@ -4,21 +4,11 @@ using UnityEngine.Events;
 
 public class CollisionEvent : MonoBehaviour
 {
-    [SerializeField] private Color _defaultColor;
-    [SerializeField] private Color _collisionColor;
     [SerializeField] private LayerMask _layerMask;
-    [SerializeField] private Renderer _renderer;
-    private Material _material;
     private List<GameObject> _collidingObjects = new List<GameObject>();
 
-    public UnityEvent<GameObject> OnColliding;
-    public UnityEvent<GameObject> OnNotColliding;
-
-    private void Start()
-    {
-        _material = _renderer.material;
-        _material.color = _defaultColor;
-    }
+    public UnityEvent OnColliding;
+    public UnityEvent OnNotColliding;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -27,10 +17,11 @@ public class CollisionEvent : MonoBehaviour
 
         _collidingObjects.Add(collisionObject);
 
+        // Debug.Log($"Add {collision.gameObject.name} {_collidingObjects.Count}");
+
         if (_collidingObjects.Count != 1) return;
 
-        _material.color = _collisionColor;
-        OnColliding.Invoke(gameObject);
+        OnColliding.Invoke();
     }
 
     private void OnCollisionExit(Collision collision)
@@ -42,9 +33,10 @@ public class CollisionEvent : MonoBehaviour
 
         _collidingObjects.Remove(collisionObject);
 
+        // Debug.Log($"Remove {collision.gameObject.name} {_collidingObjects.Count}");
+
         if (_collidingObjects.Count != 0) return;
 
-        _material.color = _defaultColor;
-        OnNotColliding.Invoke(gameObject);
+        OnNotColliding.Invoke();
     }
 }

@@ -193,7 +193,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 986008329}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -237,7 +238,7 @@ GameObject:
   - component: {fileID: 72993573}
   - component: {fileID: 72993575}
   - component: {fileID: 72993576}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: VR Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -291,7 +292,7 @@ MonoBehaviour:
   m_OriginBaseGameObject: {fileID: 72993571}
   m_CameraFloorOffsetObject: {fileID: 627646813}
   m_RequestedTrackingOriginMode: 2
-  m_CameraYOffset: 0.1
+  m_CameraYOffset: 0.2
 --- !u!143 &72993575
 CharacterController:
   m_ObjectHideFlags: 0
@@ -311,12 +312,12 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.4
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &72993576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,7 +522,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8270855663187062767, guid: 1392f805216c47742996d4742c80721c, type: 3}
   m_PrefabInstance: {fileID: 1490312161}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &301337574
+--- !u!1 &248492277
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -529,63 +530,128 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 301337575}
-  m_Layer: 0
-  m_Name: Hand Gestures
+  - component: {fileID: 248492278}
+  - component: {fileID: 248492279}
+  - component: {fileID: 248492281}
+  - component: {fileID: 248492280}
+  m_Layer: 6
+  m_Name: Gestures
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &301337575
+--- !u!4 &248492278
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 301337574}
+  m_GameObject: {fileID: 248492277}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 314228299}
-  - {fileID: 1710149459}
-  m_Father: {fileID: 0}
+  - {fileID: 1347011749}
+  - {fileID: 1748149807}
+  m_Father: {fileID: 2321527511340483204}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &314228298
-GameObject:
+--- !u!114 &248492279
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 314228299}
-  m_Layer: 0
-  m_Name: Left Hand
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &314228299
-Transform:
+  m_GameObject: {fileID: 248492277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd0e5318f3be174a83c2e8a0d979f37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _returnedObject: {fileID: 248492277}
+  _maxCount: 2
+  True:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3133494151317772354}
+        m_TargetAssemblyTypeName: ANDGate, Assembly-CSharp
+        m_MethodName: AddCount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 248492281}
+        m_TargetAssemblyTypeName: PrintGameAction, Assembly-CSharp
+        m_MethodName: Execute
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  False:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3133494151317772354}
+        m_TargetAssemblyTypeName: ANDGate, Assembly-CSharp
+        m_MethodName: SubtractCount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 248492280}
+        m_TargetAssemblyTypeName: PrintGameAction, Assembly-CSharp
+        m_MethodName: Execute
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &248492280
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 314228298}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 858925810}
-  m_Father: {fileID: 301337575}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 248492277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2934365929dd14199a6f4ee6b519cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _printText: Right Hand Gesture False
+--- !u!114 &248492281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248492277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2934365929dd14199a6f4ee6b519cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _printText: Right Hand Gesture True
 --- !u!136 &328422319
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -846,6 +912,140 @@ CapsuleCollider:
   m_Height: 0.05
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &468064391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 468064392}
+  - component: {fileID: 468064395}
+  - component: {fileID: 468064394}
+  - component: {fileID: 468064393}
+  m_Layer: 0
+  m_Name: Palm Inwards
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &468064392
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468064391}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 963179111}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &468064393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468064391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2934365929dd14199a6f4ee6b519cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _printText: Left Gesture Inwards Ended
+--- !u!114 &468064394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468064391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2934365929dd14199a6f4ee6b519cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _printText: Left Gesture Inwards Performed
+--- !u!114 &468064395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468064391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf93899325d5df74eb9176e097ee3d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HandTrackingEvents: {fileID: 1599597259}
+  m_HandShapeOrPose: {fileID: 11400000, guid: 63e3ce2102d73b240939bb86a34e03cd, type: 2}
+  m_TargetTransform: {fileID: 0}
+  m_Background: {fileID: 986008327}
+  m_GesturePerformed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 468064394}
+        m_TargetAssemblyTypeName: PrintGameAction, Assembly-CSharp
+        m_MethodName: Execute
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
+      - m_Target: {fileID: 963179112}
+        m_TargetAssemblyTypeName: ORGate, Assembly-CSharp
+        m_MethodName: AddCount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_GestureEnded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 468064393}
+        m_TargetAssemblyTypeName: PrintGameAction, Assembly-CSharp
+        m_MethodName: Execute
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
+      - m_Target: {fileID: 963179112}
+        m_TargetAssemblyTypeName: ORGate, Assembly-CSharp
+        m_MethodName: SubtractCount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_MinimumHoldTime: 0.2
+  m_GestureDetectionInterval: 0.1
+  m_StaticGestures: []
+  m_Highlight: {fileID: 0}
 --- !u!136 &480466042
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1115,7 +1315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &681547058
 Transform:
   m_ObjectHideFlags: 0
@@ -1578,7 +1778,7 @@ GameObject:
   - component: {fileID: 858925813}
   - component: {fileID: 858925812}
   m_Layer: 0
-  m_Name: Hand Gesture 1
+  m_Name: Palm Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1597,7 +1797,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 314228299}
+  m_Father: {fileID: 963179111}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &858925811
 MonoBehaviour:
@@ -1614,13 +1814,25 @@ MonoBehaviour:
   m_HandTrackingEvents: {fileID: 1599597259}
   m_HandShapeOrPose: {fileID: 11400000, guid: af5de32b832166049a2ae9ea11456153, type: 2}
   m_TargetTransform: {fileID: 0}
-  m_Background: {fileID: 0}
+  m_Background: {fileID: 986008327}
   m_GesturePerformed:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 858925813}
         m_TargetAssemblyTypeName: PrintGameAction, Assembly-CSharp
         m_MethodName: Execute
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
+      - m_Target: {fileID: 963179112}
+        m_TargetAssemblyTypeName: ORGate, Assembly-CSharp
+        m_MethodName: AddCount
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1636,6 +1848,18 @@ MonoBehaviour:
       - m_Target: {fileID: 858925812}
         m_TargetAssemblyTypeName: PrintGameAction, Assembly-CSharp
         m_MethodName: Execute
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
+      - m_Target: {fileID: 963179112}
+        m_TargetAssemblyTypeName: ORGate, Assembly-CSharp
+        m_MethodName: SubtractCount
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1661,7 +1885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2934365929dd14199a6f4ee6b519cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _printText: Left Gesture Ended
+  _printText: Left Gesture Down Ended
 --- !u!114 &858925813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1674,7 +1898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2934365929dd14199a6f4ee6b519cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _printText: Left Gesture Performed
+  _printText: Left Gesture Down Performed
 --- !u!1 &865092675
 GameObject:
   m_ObjectHideFlags: 0
@@ -1719,12 +1943,217 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d2a43e2c53cfd147be701fb428bc1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: 
+  title: 2
   description: 
   isTriggered: 0
   OnTrigger:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &963179110
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 963179111}
+  - component: {fileID: 963179112}
+  - component: {fileID: 963179114}
+  - component: {fileID: 963179113}
+  m_Layer: 6
+  m_Name: Gestures
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &963179111
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963179110}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 858925810}
+  - {fileID: 468064392}
+  m_Father: {fileID: 141466982044238854}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &963179112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963179110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd0e5318f3be174a83c2e8a0d979f37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _returnedObject: {fileID: 963179110}
+  _maxCount: 2
+  True:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6627571520832156923}
+        m_TargetAssemblyTypeName: ANDGate, Assembly-CSharp
+        m_MethodName: AddCount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 963179114}
+        m_TargetAssemblyTypeName: PrintGameAction, Assembly-CSharp
+        m_MethodName: Execute
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  False:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6627571520832156923}
+        m_TargetAssemblyTypeName: ANDGate, Assembly-CSharp
+        m_MethodName: SubtractCount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 963179113}
+        m_TargetAssemblyTypeName: PrintGameAction, Assembly-CSharp
+        m_MethodName: Execute
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &963179113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963179110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2934365929dd14199a6f4ee6b519cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _printText: Left Hand Gesture False
+--- !u!114 &963179114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963179110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2934365929dd14199a6f4ee6b519cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _printText: Left Hand Gesture True
+--- !u!1 &986008326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 986008329}
+  - component: {fileID: 986008328}
+  - component: {fileID: 986008327}
+  m_Layer: 0
+  m_Name: TempImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &986008327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986008326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &986008328
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986008326}
+  m_CullTransparentMesh: 1
+--- !u!224 &986008329
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986008326}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 55966130}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!65 &1015416552
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1790,7 +2219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d2a43e2c53cfd147be701fb428bc1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: 
+  title: 1
   description: 
   isTriggered: 0
   OnTrigger:
@@ -2121,7 +2550,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -2698,7 +3127,7 @@ GameObject:
   - component: {fileID: 1347011752}
   - component: {fileID: 1347011751}
   m_Layer: 0
-  m_Name: Hand Gesture 1
+  m_Name: Palm Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2717,7 +3146,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1710149459}
+  m_Father: {fileID: 248492278}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1347011750
 MonoBehaviour:
@@ -2734,13 +3163,25 @@ MonoBehaviour:
   m_HandTrackingEvents: {fileID: 1374554857}
   m_HandShapeOrPose: {fileID: 11400000, guid: af5de32b832166049a2ae9ea11456153, type: 2}
   m_TargetTransform: {fileID: 0}
-  m_Background: {fileID: 0}
+  m_Background: {fileID: 986008327}
   m_GesturePerformed:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1347011752}
         m_TargetAssemblyTypeName: PrintGameAction, Assembly-CSharp
         m_MethodName: Execute
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
+      - m_Target: {fileID: 248492279}
+        m_TargetAssemblyTypeName: ORGate, Assembly-CSharp
+        m_MethodName: AddCount
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2756,6 +3197,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1347011751}
         m_TargetAssemblyTypeName: PrintGameAction, Assembly-CSharp
         m_MethodName: Execute
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
+      - m_Target: {fileID: 248492279}
+        m_TargetAssemblyTypeName: ORGate, Assembly-CSharp
+        m_MethodName: SubtractCount
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2781,7 +3234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2934365929dd14199a6f4ee6b519cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _printText: Right Gesture Ended
+  _printText: Right Gesture Down Ended
 --- !u!114 &1347011752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2794,7 +3247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2934365929dd14199a6f4ee6b519cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _printText: Right Gesture Performed
+  _printText: Right Gesture Down Performed
 --- !u!136 &1351539859
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2862,7 +3315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d2a43e2c53cfd147be701fb428bc1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: 
+  title: 3
   description: 
   isTriggered: 0
   OnTrigger:
@@ -3027,7 +3480,6 @@ GameObject:
   - component: {fileID: 1488397373}
   - component: {fileID: 1488397372}
   - component: {fileID: 1488397371}
-  - component: {fileID: 1488397375}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3262,27 +3714,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!135 &1488397375
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1488397369}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1490312161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3624,38 +4055,6 @@ CapsuleCollider:
   m_Height: 0.07
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0.01}
---- !u!1 &1710149458
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1710149459}
-  m_Layer: 0
-  m_Name: Right Hand
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1710149459
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1710149458}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1347011749}
-  m_Father: {fileID: 301337575}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1740999399
 GameObject:
   m_ObjectHideFlags: 0
@@ -3765,6 +4164,140 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1740999399}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1748149806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1748149807}
+  - component: {fileID: 1748149810}
+  - component: {fileID: 1748149809}
+  - component: {fileID: 1748149808}
+  m_Layer: 0
+  m_Name: Palm Inwards
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1748149807
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748149806}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 248492278}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1748149808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748149806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2934365929dd14199a6f4ee6b519cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _printText: Right Gesture Inwards Ended
+--- !u!114 &1748149809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748149806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2934365929dd14199a6f4ee6b519cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _printText: Right Gesture Inwards Performed
+--- !u!114 &1748149810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748149806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf93899325d5df74eb9176e097ee3d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HandTrackingEvents: {fileID: 1374554857}
+  m_HandShapeOrPose: {fileID: 11400000, guid: 63e3ce2102d73b240939bb86a34e03cd, type: 2}
+  m_TargetTransform: {fileID: 0}
+  m_Background: {fileID: 986008327}
+  m_GesturePerformed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1748149809}
+        m_TargetAssemblyTypeName: PrintGameAction, Assembly-CSharp
+        m_MethodName: Execute
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
+      - m_Target: {fileID: 248492279}
+        m_TargetAssemblyTypeName: ORGate, Assembly-CSharp
+        m_MethodName: AddCount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_GestureEnded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1748149808}
+        m_TargetAssemblyTypeName: PrintGameAction, Assembly-CSharp
+        m_MethodName: Execute
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
+      - m_Target: {fileID: 248492279}
+        m_TargetAssemblyTypeName: ORGate, Assembly-CSharp
+        m_MethodName: SubtractCount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_MinimumHoldTime: 0.2
+  m_GestureDetectionInterval: 0.1
+  m_StaticGestures: []
+  m_Highlight: {fileID: 0}
 --- !u!136 &1772031048
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3842,7 +4375,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -3978,7 +4511,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -4344,7 +4877,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -4471,6 +5004,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 963179111}
   - {fileID: 5876909489020591547}
   - {fileID: 6220702576962679055}
   m_Father: {fileID: 1137041863}
@@ -4620,6 +5154,7 @@ GameObject:
   - component: {fileID: 6627571520832156919}
   - component: {fileID: 6627571520832156921}
   - component: {fileID: 6627571520832156920}
+  - component: {fileID: 6627571520832156923}
   - component: {fileID: 6627571520832156922}
   m_Layer: 6
   m_Name: Left Hand Tracking
@@ -4985,6 +5520,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 248492278}
   - {fileID: 2468282022310203476}
   - {fileID: 4173005201667218612}
   m_Father: {fileID: 1137041863}
@@ -5251,6 +5787,7 @@ GameObject:
   - component: {fileID: 2726143016982100775}
   - component: {fileID: 3133494151317772352}
   - component: {fileID: 3133494151317772351}
+  - component: {fileID: 3133494151317772354}
   - component: {fileID: 3133494151317772353}
   m_Layer: 7
   m_Name: Right Hand Tracking
@@ -5271,18 +5808,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85edfb6901f84384a8cf0497464fcb07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 0.64705884}
-  _collisionColor: {r: 0.65882355, g: 0.9411765, b: 0.5176471, a: 0.64705884}
   _layerMask:
     serializedVersion: 2
     m_Bits: 8
-  _renderer: {fileID: 1317669516636500509}
   OnColliding:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3133494151317772354}
+        m_TargetAssemblyTypeName: HandANDGate, Assembly-CSharp
+        m_MethodName: AddCount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5558430573844169742}
+        m_TargetAssemblyTypeName: ChangeMaterialColor, Assembly-CSharp
+        m_MethodName: SetSecondColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnNotColliding:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3133494151317772354}
+        m_TargetAssemblyTypeName: HandANDGate, Assembly-CSharp
+        m_MethodName: SubtractCount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5558430573844169742}
+        m_TargetAssemblyTypeName: ChangeMaterialColor, Assembly-CSharp
+        m_MethodName: SetFirstColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!54 &3133494151317772352
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5322,6 +5904,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b7560b957df074b8dbf5c0b63a52c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _force: 100
+--- !u!114 &3133494151317772354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3133494151317772350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa82e1d574e4d14f8668b0f3284f75a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _returnedObject: {fileID: 3133494151317772350}
+  _maxCount: 2
+  True:
+    m_PersistentCalls:
+      m_Calls: []
+  False:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &3288495760939838896
 Transform:
   m_ObjectHideFlags: 0
@@ -5758,8 +6361,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6220702576962679055}
   - component: {fileID: 1785337193552997933}
+  - component: {fileID: 6220702576962679056}
   m_Layer: 6
-  m_Name: LeftHand
+  m_Name: Left Hand Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5842,13 +6446,29 @@ GameObject:
   m_Component:
   - component: {fileID: 4173005201667218612}
   - component: {fileID: 1317669516636500509}
+  - component: {fileID: 5558430573844169742}
   m_Layer: 7
-  m_Name: RightHand
+  m_Name: Right Hand Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5558430573844169742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5558430573844169741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5cd9544ee8be042ab0876646d89394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firstColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 0.64705884}
+  _secondColor: {r: 0.65882355, g: 0.9411765, b: 0.5176471, a: 0.64705884}
+  _renderer: {fileID: 1317669516636500509}
 --- !u!4 &5643220764852921573
 Transform:
   m_ObjectHideFlags: 0
@@ -6047,6 +6667,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 141466982044238854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6220702576962679056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4985677830759644434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5cd9544ee8be042ab0876646d89394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firstColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 0.64705884}
+  _secondColor: {r: 0.65882355, g: 0.9411765, b: 0.5176471, a: 0.64705884}
+  _renderer: {fileID: 1785337193552997933}
 --- !u!4 &6226456669520723017
 Transform:
   m_ObjectHideFlags: 0
@@ -6155,18 +6790,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85edfb6901f84384a8cf0497464fcb07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 0.64705884}
-  _collisionColor: {r: 0.65882355, g: 0.9411765, b: 0.5176471, a: 0.64705884}
   _layerMask:
     serializedVersion: 2
     m_Bits: 8
-  _renderer: {fileID: 1785337193552997933}
   OnColliding:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6627571520832156923}
+        m_TargetAssemblyTypeName: HandANDGate, Assembly-CSharp
+        m_MethodName: AddCount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6220702576962679056}
+        m_TargetAssemblyTypeName: ChangeMaterialColor, Assembly-CSharp
+        m_MethodName: SetSecondColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnNotColliding:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6627571520832156923}
+        m_TargetAssemblyTypeName: HandANDGate, Assembly-CSharp
+        m_MethodName: SubtractCount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6220702576962679056}
+        m_TargetAssemblyTypeName: ChangeMaterialColor, Assembly-CSharp
+        m_MethodName: SetFirstColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!54 &6627571520832156921
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6206,6 +6886,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b7560b957df074b8dbf5c0b63a52c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _force: 100
+--- !u!114 &6627571520832156923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773853690703503036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa82e1d574e4d14f8668b0f3284f75a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _returnedObject: {fileID: 773853690703503036}
+  _maxCount: 2
+  True:
+    m_PersistentCalls:
+      m_Calls: []
+  False:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6671281727824398454
 GameObject:
   m_ObjectHideFlags: 0
@@ -6682,4 +7383,3 @@ SceneRoots:
   - {fileID: 388365977}
   - {fileID: 1138495830}
   - {fileID: 2049814906}
-  - {fileID: 301337575}

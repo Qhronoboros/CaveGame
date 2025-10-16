@@ -3,8 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class TransformToDefault : MonoBehaviour
 {
+    [SerializeField] private float _force = 10;
     private Rigidbody _rb;
-    private float _force = 10;
 
     private void Awake()
     {
