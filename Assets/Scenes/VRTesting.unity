@@ -534,6 +534,7 @@ GameObject:
   - component: {fileID: 248492279}
   - component: {fileID: 248492281}
   - component: {fileID: 248492280}
+  - component: {fileID: 248492282}
   m_Layer: 6
   m_Name: Gestures
   m_TagString: Untagged
@@ -567,26 +568,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 248492277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bd0e5318f3be174a83c2e8a0d979f37, type: 3}
+  m_Script: {fileID: 11500000, guid: bfa82e1d574e4d14f8668b0f3284f75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _logicGate: 0
   _returnedObject: {fileID: 248492277}
-  _maxCount: 2
-  True:
+  EvaluateTrue:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3133494151317772354}
-        m_TargetAssemblyTypeName: ANDGate, Assembly-CSharp
-        m_MethodName: AddCount
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 248492281}
         m_TargetAssemblyTypeName: PrintGameAction, Assembly-CSharp
         m_MethodName: Execute
@@ -599,12 +588,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  False:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3133494151317772354}
-        m_TargetAssemblyTypeName: ANDGate, Assembly-CSharp
-        m_MethodName: SubtractCount
+      - m_Target: {fileID: 248492282}
+        m_TargetAssemblyTypeName: ChangeMaterialColor, Assembly-CSharp
+        m_MethodName: SetSecondColor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -614,10 +600,49 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3133494151317772354}
+        m_TargetAssemblyTypeName: LogicGateEvaluator, Assembly-CSharp
+        m_MethodName: SetSecondOperand
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  EvaluateFalse:
+    m_PersistentCalls:
+      m_Calls:
       - m_Target: {fileID: 248492280}
         m_TargetAssemblyTypeName: PrintGameAction, Assembly-CSharp
         m_MethodName: Execute
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 248492282}
+        m_TargetAssemblyTypeName: ChangeMaterialColor, Assembly-CSharp
+        m_MethodName: SetFirstColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3133494151317772354}
+        m_TargetAssemblyTypeName: LogicGateEvaluator, Assembly-CSharp
+        m_MethodName: SetSecondOperand
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -652,6 +677,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _printText: Right Hand Gesture True
+--- !u!114 &248492282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248492277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5cd9544ee8be042ab0876646d89394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firstColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 0.64705884}
+  _secondColor: {r: 0.52105, g: 0, b: 1, a: 0.64705884}
+  _renderer: {fileID: 1317669516636500509}
 --- !u!136 &328422319
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1004,16 +1044,16 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 0
       - m_Target: {fileID: 963179112}
-        m_TargetAssemblyTypeName: ORGate, Assembly-CSharp
-        m_MethodName: AddCount
-        m_Mode: 1
+        m_TargetAssemblyTypeName: LogicGateEvaluator, Assembly-CSharp
+        m_MethodName: SetSecondOperand
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   m_GestureEnded:
     m_PersistentCalls:
@@ -1031,9 +1071,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 0
       - m_Target: {fileID: 963179112}
-        m_TargetAssemblyTypeName: ORGate, Assembly-CSharp
-        m_MethodName: SubtractCount
-        m_Mode: 1
+        m_TargetAssemblyTypeName: LogicGateEvaluator, Assembly-CSharp
+        m_MethodName: SetSecondOperand
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1042,9 +1082,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_MinimumHoldTime: 0.2
-  m_GestureDetectionInterval: 0.1
-  m_StaticGestures: []
+  m_MinimumHoldTime: 0.05
+  m_GestureDetectionInterval: 0.05
+  m_StaticGestures:
+  - {fileID: 858925811}
+  - {fileID: 468064395}
   m_Highlight: {fileID: 0}
 --- !u!136 &480466042
 CapsuleCollider:
@@ -1831,16 +1873,16 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 0
       - m_Target: {fileID: 963179112}
-        m_TargetAssemblyTypeName: ORGate, Assembly-CSharp
-        m_MethodName: AddCount
-        m_Mode: 1
+        m_TargetAssemblyTypeName: LogicGateEvaluator, Assembly-CSharp
+        m_MethodName: SetFirstOperand
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   m_GestureEnded:
     m_PersistentCalls:
@@ -1858,9 +1900,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 0
       - m_Target: {fileID: 963179112}
-        m_TargetAssemblyTypeName: ORGate, Assembly-CSharp
-        m_MethodName: SubtractCount
-        m_Mode: 1
+        m_TargetAssemblyTypeName: LogicGateEvaluator, Assembly-CSharp
+        m_MethodName: SetFirstOperand
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1869,9 +1911,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_MinimumHoldTime: 0.2
-  m_GestureDetectionInterval: 0.1
-  m_StaticGestures: []
+  m_MinimumHoldTime: 0.05
+  m_GestureDetectionInterval: 0.05
+  m_StaticGestures:
+  - {fileID: 858925811}
+  - {fileID: 468064395}
   m_Highlight: {fileID: 0}
 --- !u!114 &858925812
 MonoBehaviour:
@@ -1961,6 +2005,7 @@ GameObject:
   - component: {fileID: 963179112}
   - component: {fileID: 963179114}
   - component: {fileID: 963179113}
+  - component: {fileID: 963179115}
   m_Layer: 6
   m_Name: Gestures
   m_TagString: Untagged
@@ -1994,26 +2039,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 963179110}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bd0e5318f3be174a83c2e8a0d979f37, type: 3}
+  m_Script: {fileID: 11500000, guid: bfa82e1d574e4d14f8668b0f3284f75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _logicGate: 0
   _returnedObject: {fileID: 963179110}
-  _maxCount: 2
-  True:
+  EvaluateTrue:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6627571520832156923}
-        m_TargetAssemblyTypeName: ANDGate, Assembly-CSharp
-        m_MethodName: AddCount
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 963179114}
         m_TargetAssemblyTypeName: PrintGameAction, Assembly-CSharp
         m_MethodName: Execute
@@ -2026,12 +2059,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  False:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6627571520832156923}
-        m_TargetAssemblyTypeName: ANDGate, Assembly-CSharp
-        m_MethodName: SubtractCount
+      - m_Target: {fileID: 963179115}
+        m_TargetAssemblyTypeName: ChangeMaterialColor, Assembly-CSharp
+        m_MethodName: SetSecondColor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2041,10 +2071,49 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6627571520832156923}
+        m_TargetAssemblyTypeName: LogicGateEvaluator, Assembly-CSharp
+        m_MethodName: SetSecondOperand
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  EvaluateFalse:
+    m_PersistentCalls:
+      m_Calls:
       - m_Target: {fileID: 963179113}
         m_TargetAssemblyTypeName: PrintGameAction, Assembly-CSharp
         m_MethodName: Execute
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 963179115}
+        m_TargetAssemblyTypeName: ChangeMaterialColor, Assembly-CSharp
+        m_MethodName: SetFirstColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6627571520832156923}
+        m_TargetAssemblyTypeName: LogicGateEvaluator, Assembly-CSharp
+        m_MethodName: SetSecondOperand
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2079,6 +2148,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _printText: Left Hand Gesture True
+--- !u!114 &963179115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963179110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5cd9544ee8be042ab0876646d89394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firstColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 0.64705884}
+  _secondColor: {r: 0.52105, g: 0, b: 1, a: 0.64705884}
+  _renderer: {fileID: 1785337193552997933}
 --- !u!1 &986008326
 GameObject:
   m_ObjectHideFlags: 0
@@ -3180,16 +3264,16 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 0
       - m_Target: {fileID: 248492279}
-        m_TargetAssemblyTypeName: ORGate, Assembly-CSharp
-        m_MethodName: AddCount
-        m_Mode: 1
+        m_TargetAssemblyTypeName: LogicGateEvaluator, Assembly-CSharp
+        m_MethodName: SetFirstOperand
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   m_GestureEnded:
     m_PersistentCalls:
@@ -3207,9 +3291,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 0
       - m_Target: {fileID: 248492279}
-        m_TargetAssemblyTypeName: ORGate, Assembly-CSharp
-        m_MethodName: SubtractCount
-        m_Mode: 1
+        m_TargetAssemblyTypeName: LogicGateEvaluator, Assembly-CSharp
+        m_MethodName: SetFirstOperand
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3218,9 +3302,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_MinimumHoldTime: 0.2
-  m_GestureDetectionInterval: 0.1
-  m_StaticGestures: []
+  m_MinimumHoldTime: 0.05
+  m_GestureDetectionInterval: 0.05
+  m_StaticGestures:
+  - {fileID: 1347011750}
+  - {fileID: 1748149810}
   m_Highlight: {fileID: 0}
 --- !u!114 &1347011751
 MonoBehaviour:
@@ -4256,16 +4342,16 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 0
       - m_Target: {fileID: 248492279}
-        m_TargetAssemblyTypeName: ORGate, Assembly-CSharp
-        m_MethodName: AddCount
-        m_Mode: 1
+        m_TargetAssemblyTypeName: LogicGateEvaluator, Assembly-CSharp
+        m_MethodName: SetSecondOperand
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   m_GestureEnded:
     m_PersistentCalls:
@@ -4283,9 +4369,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 0
       - m_Target: {fileID: 248492279}
-        m_TargetAssemblyTypeName: ORGate, Assembly-CSharp
-        m_MethodName: SubtractCount
-        m_Mode: 1
+        m_TargetAssemblyTypeName: LogicGateEvaluator, Assembly-CSharp
+        m_MethodName: SetSecondOperand
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4294,9 +4380,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_MinimumHoldTime: 0.2
-  m_GestureDetectionInterval: 0.1
-  m_StaticGestures: []
+  m_MinimumHoldTime: 0.05
+  m_GestureDetectionInterval: 0.05
+  m_StaticGestures:
+  - {fileID: 1347011750}
+  - {fileID: 1748149810}
   m_Highlight: {fileID: 0}
 --- !u!136 &1772031048
 CapsuleCollider:
@@ -5815,16 +5903,16 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3133494151317772354}
-        m_TargetAssemblyTypeName: HandANDGate, Assembly-CSharp
-        m_MethodName: AddCount
-        m_Mode: 1
+        m_TargetAssemblyTypeName: LogicGateEvaluator, Assembly-CSharp
+        m_MethodName: SetFirstOperand
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 5558430573844169742}
         m_TargetAssemblyTypeName: ChangeMaterialColor, Assembly-CSharp
@@ -5842,9 +5930,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3133494151317772354}
-        m_TargetAssemblyTypeName: HandANDGate, Assembly-CSharp
-        m_MethodName: SubtractCount
-        m_Mode: 1
+        m_TargetAssemblyTypeName: LogicGateEvaluator, Assembly-CSharp
+        m_MethodName: SetFirstOperand
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5917,12 +6005,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa82e1d574e4d14f8668b0f3284f75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _logicGate: 4
   _returnedObject: {fileID: 3133494151317772350}
-  _maxCount: 2
-  True:
+  EvaluateTrue:
     m_PersistentCalls:
       m_Calls: []
-  False:
+  EvaluateFalse:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &3288495760939838896
@@ -6797,16 +6885,16 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6627571520832156923}
-        m_TargetAssemblyTypeName: HandANDGate, Assembly-CSharp
-        m_MethodName: AddCount
-        m_Mode: 1
+        m_TargetAssemblyTypeName: LogicGateEvaluator, Assembly-CSharp
+        m_MethodName: SetFirstOperand
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 6220702576962679056}
         m_TargetAssemblyTypeName: ChangeMaterialColor, Assembly-CSharp
@@ -6824,9 +6912,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6627571520832156923}
-        m_TargetAssemblyTypeName: HandANDGate, Assembly-CSharp
-        m_MethodName: SubtractCount
-        m_Mode: 1
+        m_TargetAssemblyTypeName: LogicGateEvaluator, Assembly-CSharp
+        m_MethodName: SetFirstOperand
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6899,12 +6987,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa82e1d574e4d14f8668b0f3284f75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _logicGate: 4
   _returnedObject: {fileID: 773853690703503036}
-  _maxCount: 2
-  True:
+  EvaluateTrue:
     m_PersistentCalls:
       m_Calls: []
-  False:
+  EvaluateFalse:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &6671281727824398454
