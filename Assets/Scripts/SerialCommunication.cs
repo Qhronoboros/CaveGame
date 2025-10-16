@@ -7,12 +7,13 @@ using System.Threading;
 
 public class SerialCommunication : MonoBehaviour
 {
+    [SerializeField] private string _portName;
     private SerialPort _serialPort;
     private Thread _thread;
     private readonly object _lock = new();
     private bool _isLooping;
 
-    public UnityEvent<int> dataReceived;
+    public UnityEvent<int> OnDataReceived;
 
     private void Awake()
     {
@@ -27,6 +28,8 @@ public class SerialCommunication : MonoBehaviour
         StartSerialCommunication();
     }
 
+    public void SetPortName(string name) => _portName = name;
+
     public void StartSerialCommunication()
     {
         if (!IsLooping())
@@ -40,10 +43,10 @@ public class SerialCommunication : MonoBehaviour
 
     private void ThreadLoop()
     {
-        _serialPort = new SerialPort("COM5", 9600);
-        _serialPort.Open();
-
         _isLooping = true;
+
+        _serialPort = new SerialPort(_portName, 9600);
+        _serialPort.Open();
 
         while (IsLooping())
         {
@@ -56,7 +59,7 @@ public class SerialCommunication : MonoBehaviour
             }
 
             Debug.Log($"Receiving Data: {dataParsed}");
-            dataReceived.Invoke(dataParsed);
+            OnDataReceived.Invoke(dataParsed);
         }
 
         if (_serialPort.IsOpen)

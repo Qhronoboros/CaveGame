@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,14 +9,12 @@ public class CollisionEvent : MonoBehaviour
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private Renderer _renderer;
     private Material _material;
+    private List<GameObject> _collidingObjects = new List<GameObject>();
 
-    public UnityEvent<GameObject> Colliding;
-    public UnityEvent<GameObject> NotColliding;
+    public UnityEvent<GameObject> OnColliding;
+    public UnityEvent<GameObject> OnNotColliding;
 
-    // The amount of colliders the object is colliding with
-    private int _collisionCount = 0;
-
-    private void Awake()
+    private void Start()
     {
         _material = _renderer.material;
         _material.color = _defaultColor;
@@ -23,21 +22,29 @@ public class CollisionEvent : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!LayerHelper.IsInLayerMask(_layerMask, collision.gameObject.layer)) return;
+        GameObject collisionObject = collision.gameObject;
+        if (!LayerHelper.IsInLayerMask(_layerMask, collisionObject.layer)) return;
 
-        if (++_collisionCount > 1) return;
+        _collidingObjects.Add(collisionObject);
+
+        if (_collidingObjects.Count != 1) return;
 
         _material.color = _collisionColor;
-        Colliding.Invoke(gameObject);
+        OnColliding.Invoke(gameObject);
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (!LayerHelper.IsInLayerMask(_layerMask, collision.gameObject.layer)) return;
+        GameObject collisionObject = collision.gameObject;
 
-        if (--_collisionCount < 1) return;
+        if (!LayerHelper.IsInLayerMask(_layerMask, collisionObject.layer)
+                || !_collidingObjects.Contains(collisionObject)) return;
+
+        _collidingObjects.Remove(collisionObject);
+
+        if (_collidingObjects.Count != 0) return;
 
         _material.color = _defaultColor;
-        NotColliding.Invoke(gameObject);
+        OnNotColliding.Invoke(gameObject);
     }
 }

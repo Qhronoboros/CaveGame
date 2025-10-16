@@ -5,27 +5,32 @@ using UnityEngine.Events;
 
 public class GameEventManager : MonoBehaviour
 {
-    [SerializeField] private List<GameEvent> gameEvents = new List<GameEvent>();
     private Dictionary<string, GameEvent> gameEventDict = new Dictionary<string, GameEvent>();
 
-    public UnityEvent GameEventTriggered;
+    public UnityEvent OnGameEventTriggered;
 
     private void Awake()
     {
         if (GameManager.gameEventManager == null)
             GameManager.gameEventManager = this;
-		else 
-		{
-			Debug.LogError($"A GameEventManager already exists, deleting self: {name}");
-			Destroy(gameObject);
-		}
-    
-        for (int i = 0; i < gameEvents.Count; i++)
-            AddGameEvent(gameEvents[i]);
+        else
+        {
+            Debug.LogError($"A GameEventManager already exists, deleting self: {name}");
+            Destroy(gameObject);
+        }
+
+        for (int i = 0; i < transform.childCount; i++)
+            AddGameEvent(transform.GetChild(i).GetComponent<GameEvent>());
     }
-    
+
     public void AddGameEvent(GameEvent gameEvent)
     {
+        if (gameEvent is null)
+        {
+            Debug.LogError("Given gameObject does not have a GameEvent script");
+            return;
+        }
+
         gameEventDict.Add(gameEvent.title, gameEvent);
     }
     
@@ -33,7 +38,7 @@ public class GameEventManager : MonoBehaviour
     {
         if (!GetGameEvent(gameEventTitle, out GameEvent gameEvent)) return;
         gameEvent.Trigger();
-        GameEventTriggered.Invoke();
+        OnGameEventTriggered.Invoke();
     }
     
     public bool IsGameEventTriggered(string gameEventTitle)
@@ -50,15 +55,15 @@ public class GameEventManager : MonoBehaviour
         return false;
     }
     
-    public void SubscribeToGameEvent(string gameEventTitle, Action callback)
+    public void SubscribeToGameEvent(string gameEventTitle, UnityAction callback)
     {
         if (!GetGameEvent(gameEventTitle, out GameEvent gameEvent)) return;
-        gameEvent.OnTrigger += callback;
+        gameEvent.OnTrigger.AddListener(callback);
     }
     
-    public void UnsubscribeToGameEvent(string gameEventTitle, Action callback)
+    public void UnsubscribeToGameEvent(string gameEventTitle, UnityAction callback)
     {
         if (!GetGameEvent(gameEventTitle, out GameEvent gameEvent)) return;
-        gameEvent.OnTrigger -= callback;
+        gameEvent.OnTrigger.RemoveListener(callback);
     }
 }

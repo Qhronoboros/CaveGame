@@ -1,13 +1,13 @@
-using System;
+using UnityEngine;
+using UnityEngine.Events;
 
-[Serializable]
-public class GameEvent
+public class GameEvent : MonoBehaviour
 {
     public string title = "";
     public string description = "";
 
     public bool isTriggered = false;    
-    public event Action OnTrigger;
+    public UnityEvent OnTrigger;
     
     public void Trigger()
     {
