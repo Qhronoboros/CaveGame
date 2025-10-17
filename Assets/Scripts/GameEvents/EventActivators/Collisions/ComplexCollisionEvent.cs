@@ -7,11 +7,12 @@ using UnityEngine.Events;
 /*  Order of operations:
 - Empty contactLists of childColliders (FixedUpdate)
 - Receive all contacts for each childColliders and put them in contactLists (OnCollisionStay)
-- Check if there are any contacts
+- Check if childColliders are 
 */
 
 // Class works with compoundColliders
-public class CollisionEvent : MonoBehaviour
+// ! Not tested
+public class ComplexCollisionEvent : MonoBehaviour
 {
     [SerializeField] private LayerMask _layerMask;
     // Dictionary contains childCollider and contactList pair
