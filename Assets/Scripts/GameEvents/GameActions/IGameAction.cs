@@ -1,4 +1,0 @@
-interface IGameAction
-{
-    void Execute();
-}

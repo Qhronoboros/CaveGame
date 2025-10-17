@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PrintGameAction : MonoBehaviour, IGameAction
+public class PrintToConsole : MonoBehaviour
 {
     [SerializeField] private string _printText;
 
