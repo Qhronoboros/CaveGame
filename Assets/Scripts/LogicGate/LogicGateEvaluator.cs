@@ -7,15 +7,13 @@ using UnityEngine.Events;
 public class LogicGateEvaluator : MonoBehaviour
 {
     [SerializeField] private LogicGate _logicGate;
-    [SerializeField] private GameObject _returnedObject;
-
     [SerializeField] private int _operandAmount;
     private List<bool> _operandList = new List<bool>();
 
     private bool _lastResult = false;
 
-    public UnityEvent<GameObject> EvaluateTrue;
-    public UnityEvent<GameObject> EvaluateFalse;
+    public UnityEvent EvaluateTrue;
+    public UnityEvent EvaluateFalse;
 
     private void Awake()
     {
@@ -53,8 +51,8 @@ public class LogicGateEvaluator : MonoBehaviour
         {
             _lastResult = !_lastResult;
 
-            if (_lastResult) EvaluateTrue.Invoke(_returnedObject);
-            else EvaluateFalse.Invoke(_returnedObject);
+            if (_lastResult) EvaluateTrue?.Invoke();
+            else EvaluateFalse?.Invoke();
         }
     }
 

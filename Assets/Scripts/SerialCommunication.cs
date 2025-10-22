@@ -59,7 +59,7 @@ public class SerialCommunication : MonoBehaviour
             }
 
             Debug.Log($"Receiving Data: {dataParsed}");
-            OnDataReceived.Invoke(dataParsed);
+            OnDataReceived?.Invoke(dataParsed);
         }
 
         if (_serialPort.IsOpen)

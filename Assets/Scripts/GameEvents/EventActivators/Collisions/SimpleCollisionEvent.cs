@@ -20,7 +20,7 @@ public class SimpleCollisionEvent : MonoBehaviour
         if (!_callbackEveryCollision && _isColliding) return;
 
         _isColliding = true;
-        OnColliding.Invoke(collision);
+        OnColliding?.Invoke(collision);
     }
 
     private void OnCollisionExit(Collision collision)
@@ -31,7 +31,7 @@ public class SimpleCollisionEvent : MonoBehaviour
         if (!_callbackEveryCollision && !_isColliding) return;
 
         _isColliding = false;
-        OnNotColliding.Invoke(collision);
+        OnNotColliding?.Invoke(collision);
     }
 
     private void ResetValues()

@@ -17,21 +17,31 @@ public class CollisionEvent : MonoBehaviour
 
     private bool _isColliding = false;
 
+    private Coroutine _coroutine;
+    private bool _coroutineActive = false;
+
     public UnityEvent OnColliding;
     public UnityEvent OnNotColliding;
 
-    private void FixedUpdate() => EvaluateContactList();
-    
-    private void EvaluateContactList()
-    {
-        if (_isColliding && _contactList.Count == 0)
-        {
-            _isColliding = false;
-            OnNotColliding.Invoke();
-        }
+    private void Start() => _coroutine = StartCoroutine(EvaluateContactList());
 
-        _previousContactList = _contactList;
-        _contactList.Clear();
+    // After OnCollisionStay, check if there are any collisions
+    IEnumerator EvaluateContactList()
+    {
+        _coroutineActive = true;
+        while (_coroutineActive)
+        {
+            yield return new WaitForFixedUpdate();
+
+            if (_isColliding && _contactList.Count == 0)
+            {
+                _isColliding = false;
+                OnNotColliding?.Invoke();
+            }
+
+            _previousContactList = _contactList;
+            _contactList.Clear();
+        }
     }
 
     private void OnCollisionStay(Collision collision)
@@ -39,23 +49,30 @@ public class CollisionEvent : MonoBehaviour
         GameObject collisionObject = collision.gameObject;
         if (!LayerHelper.IsInLayerMask(_layerMask, collisionObject.layer)) return;
 
+        if (!_contactList.Contains(collisionObject))
+            _contactList.Add(collisionObject);
+
         if (_isColliding) return;
 
         _isColliding = true;
-        OnColliding.Invoke();
+        OnColliding?.Invoke();
     }
 
     private void ResetValues()
     {
+        _coroutineActive = false;
+        StopCoroutine(_coroutine);
+
         if (_isColliding)
         {
             _isColliding = false;
-            OnNotColliding.Invoke();
+            OnNotColliding?.Invoke();
         }
 
         _previousContactList.Clear();
         _contactList.Clear();
     }
 
+    private void OnEnable() => Start();
     private void OnDisable() => ResetValues();
 }

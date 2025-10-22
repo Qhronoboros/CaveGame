@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 	public static AudioManager audioManager;
 	public static GameEventManager gameEventManager;
 	public static SerialCommunication serialCommunication;
+
+	public static ChangeDebugText changeDebugText;
 	
 	public bool gameHasEnded = false;
 	

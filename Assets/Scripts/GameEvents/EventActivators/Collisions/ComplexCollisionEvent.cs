@@ -59,7 +59,7 @@ public class ComplexCollisionEvent : MonoBehaviour
             if (ValidateCollisionActivity())
             {
                 _isColliding = false;
-                OnNotColliding.Invoke();
+                OnNotColliding?.Invoke();
             }
         }
     }
@@ -95,7 +95,7 @@ public class ComplexCollisionEvent : MonoBehaviour
         if (_isColliding) return;
 
         _isColliding = true;
-        OnColliding.Invoke();
+        OnColliding?.Invoke();
 
         _ValidateCoroutine = StartCoroutine(ValidateAfterPhysics());
     }
@@ -131,7 +131,7 @@ public class ComplexCollisionEvent : MonoBehaviour
         if (_isColliding)
         {
             _isColliding = false;
-            OnNotColliding.Invoke();
+            OnNotColliding?.Invoke();
             StopCoroutine(_ValidateCoroutine);
         }
 
