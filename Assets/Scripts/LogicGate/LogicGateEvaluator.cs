@@ -31,9 +31,17 @@ public class LogicGateEvaluator : MonoBehaviour
     public void SetOperand(float indexAndValue)
     {
         // Not elegant, but it works
-        string[] indexAndValueString = indexAndValue.ToString("0.00").Split(".");
-        int index = int.Parse(indexAndValueString[0]);
-        bool value = Convert.ToBoolean(int.Parse(indexAndValueString[1][0].ToString()));
+        string indexAndValueString = indexAndValue.ToString("0.00");
+
+        string[] indexAndValueStringArray;
+        
+        if (indexAndValueString.Contains(",")) 
+            indexAndValueStringArray = indexAndValueString.Split(",");
+        else
+            indexAndValueStringArray = indexAndValueString.Split(".");
+            
+        int index = int.Parse(indexAndValueStringArray[0]);
+        bool value = Convert.ToBoolean(int.Parse(indexAndValueStringArray[1][0].ToString()));
 
         if (index < 0 || index >= _operandAmount)
         {

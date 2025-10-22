@@ -58,7 +58,10 @@ public class SerialCommunication : MonoBehaviour
                 continue;
             }
 
+            // Problem, can not send info or prob invoke if in another thread
+            // Maybe better to save it in a variable which then gets read by other scripts
             Debug.Log($"Receiving Data: {dataParsed}");
+            // GameManager.changeDebugText.ChangeText($"{dataParsed}");
             OnDataReceived?.Invoke(dataParsed);
         }
 

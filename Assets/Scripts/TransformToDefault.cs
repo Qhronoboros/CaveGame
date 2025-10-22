@@ -35,7 +35,7 @@ public class TransformToDefault : MonoBehaviour
         else
         {
             _rigidbody.linearVelocity = (localOriginPositionWS - transform.position).normalized * multiplier;
-            GameManager.changeDebugText.ChangeText($"{_rigidbody.linearVelocity}");
+            // GameManager.changeDebugText.ChangeText($"{_rigidbody.linearVelocity}");
         }
     }
 }
