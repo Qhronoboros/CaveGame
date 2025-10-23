@@ -1,8 +1,10 @@
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.XR.Hands;
 
 public class CrawlingHand
 {
+    public Crawling crawlingParent;
     public bool isActive;
     public Handedness handedness;
 
@@ -19,11 +21,12 @@ public class CrawlingHand
             UpdateMovementValues();
         }
     }
-    private Vector2 _lastJointLocalXROriginPosition;
+    private Vector2 _lastJointLocalCameraPosition;
 
-    public CrawlingHand(Handedness handedness)
+    public CrawlingHand(Crawling crawlingParent, Handedness handedness)
     {
         isActive = false;
+        this.crawlingParent = crawlingParent;
         this.handedness = handedness;
     }
 
@@ -37,7 +40,7 @@ public class CrawlingHand
     public void SetInactive()
     {
         isActive = false;
-        _lastJointLocalXROriginPosition = Vector2.zero;
+        _lastJointLocalCameraPosition = Vector2.zero;
         forwardMagnitude = 0.0f;
         turnAmount = 0.0f;
     }
@@ -47,22 +50,30 @@ public class CrawlingHand
         if (!isActive) return;
 
         Joint.TryGetPose(out Pose jointPose);
-        Vector2 jointLocalXROriginPosition = new Vector2(jointPose.position.x, jointPose.position.z);
+        
+        // XROrigin to World Space
+        Pose jointPoseWS = jointPose.GetTransformedBy(crawlingParent._origin.transform);
+        Vector2 jointPosePositionWS = new Vector2(jointPoseWS.position.x, jointPoseWS.position.z);
 
-        if (_lastJointLocalXROriginPosition == Vector2.zero)
+        // World Space to Camera
+        Vector2 cameraPosition = new Vector2(Camera.main.transform.position.x, Camera.main.transform.position.z);
+        Vector2 jointLocalCameraPosition = jointPosePositionWS - cameraPosition;
+
+        if (_lastJointLocalCameraPosition == Vector2.zero)
         {
-            _lastJointLocalXROriginPosition = jointLocalXROriginPosition;
+            _lastJointLocalCameraPosition = jointLocalCameraPosition;
             return;
         }
 
-        turnAmount = Vector2.SignedAngle(_lastJointLocalXROriginPosition, jointLocalXROriginPosition);
+        // Change the turn amount depending on how close the hand is to the camera
+        turnAmount = Vector2.SignedAngle(_lastJointLocalCameraPosition, jointLocalCameraPosition);
 
-        float lastJointPositionMagnitude = _lastJointLocalXROriginPosition.magnitude;
-        float jointPositionMagnitude = jointLocalXROriginPosition.magnitude;
+        float lastJointPositionMagnitude = _lastJointLocalCameraPosition.magnitude;
+        float jointPositionMagnitude = jointLocalCameraPosition.magnitude;
 
         forwardMagnitude = (lastJointPositionMagnitude - jointPositionMagnitude) * 1.0f;
 
-        _lastJointLocalXROriginPosition = jointLocalXROriginPosition;
+        _lastJointLocalCameraPosition = jointLocalCameraPosition;
 
         // GameManager.changeDebugText.ChangeText($"{magnitudeDelta}");
     }

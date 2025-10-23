@@ -9,8 +9,8 @@ using UnityEngine.XR.Interaction.Toolkit.Locomotion.Turning;
 
 public class Crawling : MonoBehaviour
 {
+    public XROrigin _origin;
     private XRHandSubsystem _subsystem;
-    [SerializeField] private XROrigin _origin;
     [SerializeField] private ContinuousMoveProvider _continuousMoveProvider;
     [SerializeField] private ContinuousTurnProvider _continuousTurnProvider;
 
@@ -21,8 +21,9 @@ public class Crawling : MonoBehaviour
 
     private void Awake()
     {
-        _leftCrawlingHand = new CrawlingHand(Handedness.Left);
-        _rightCrawlingHand = new CrawlingHand(Handedness.Right);
+        _leftCrawlingHand = new CrawlingHand(this, Handedness.Left);
+        _rightCrawlingHand = new CrawlingHand(this, Handedness.Right);
+        _movementMultiplier = 1.0f;
     }
 
     private void Start()
@@ -99,7 +100,7 @@ public class Crawling : MonoBehaviour
         // _continuousTurnProvider.turnSpeed = 1.0f;
     }
 
-    public void SetMovementMultiplier(float value) => _movementMultiplier = value;
+    public void SetMovementMultiplier(float value) => _movementMultiplier = 1.0f - value;
 
     private Vector2 GetManualInputValue(Vector3 handVelocity, float handMagnitude, float maxMagnitude)
     {
