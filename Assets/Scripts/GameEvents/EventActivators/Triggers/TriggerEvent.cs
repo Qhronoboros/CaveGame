@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.Events;
 
 // Class works with compoundColliders
-// Sends callbacks whenever something first collides with it
+// Sends callbacks whenever something first enters it
 // And when all colliders exit
-public class CollisionEvent : MonoBehaviour
+public class TriggerEvent : MonoBehaviour
 {
     [SerializeField] private LayerMask _layerMask;
     // Dictionary contains childCollider and contactList pair
@@ -16,16 +16,16 @@ public class CollisionEvent : MonoBehaviour
     private List<GameObject> _previousContactList = new List<GameObject>();
     private List<GameObject> _contactList = new List<GameObject>();
 
-    private bool _isColliding = false;
+    private bool _isTriggering = false;
 
     private Coroutine _coroutine;
     private bool _coroutineActive = false;
 
-    // Gets invoked only once when a collider collides with the object
-    // Needs to wait for all external colliders stop colliding before invoking again
-    public UnityEvent OnColliding;
-    // Gets invoked when all external colliders stop colliding with this object
-    public UnityEvent OnNotColliding;
+    // Gets invoked only once when a collider enters the trigger area
+    // Needs to wait for all external colliders to exit, before invoking again
+    public UnityEvent OnTriggering;
+    // Gets invoked when all external colliders exit the trigger area
+    public UnityEvent OnNotTriggering;
 
     private void Start() => _coroutine = StartCoroutine(EvaluateContactList());
 
@@ -37,10 +37,10 @@ public class CollisionEvent : MonoBehaviour
         {
             yield return new WaitForFixedUpdate();
 
-            if (_isColliding && _contactList.Count == 0)
+            if (_isTriggering && _contactList.Count == 0)
             {
-                _isColliding = false;
-                OnNotColliding?.Invoke();
+                _isTriggering = false;
+                OnNotTriggering?.Invoke();
             }
 
             _previousContactList = _contactList;
@@ -48,18 +48,18 @@ public class CollisionEvent : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnTriggerStay(Collider other)
     {
-        GameObject collisionObject = collision.gameObject;
+        GameObject collisionObject = other.gameObject;
         if (!LayerHelper.IsInLayerMask(_layerMask, collisionObject.layer)) return;
 
         if (!_contactList.Contains(collisionObject))
             _contactList.Add(collisionObject);
 
-        if (_isColliding) return;
+        if (_isTriggering) return;
 
-        _isColliding = true;
-        OnColliding?.Invoke();
+        _isTriggering = true;
+        OnTriggering?.Invoke();
     }
 
     private void ResetValues()
@@ -67,10 +67,10 @@ public class CollisionEvent : MonoBehaviour
         _coroutineActive = false;
         StopCoroutine(_coroutine);
 
-        if (_isColliding)
+        if (_isTriggering)
         {
-            _isColliding = false;
-            OnNotColliding?.Invoke();
+            _isTriggering = false;
+            OnNotTriggering?.Invoke();
         }
 
         _previousContactList.Clear();
