@@ -31,17 +31,10 @@ public class LogicGateEvaluator : MonoBehaviour
     public void SetOperand(float indexAndValue)
     {
         // Not elegant, but it works
-        string indexAndValueString = indexAndValue.ToString("0.00");
-
-        string[] indexAndValueStringArray;
+        string[] indexAndValueStringArray = indexAndValue.ToString("0.0").Split(',', '.');
         
-        if (indexAndValueString.Contains(",")) 
-            indexAndValueStringArray = indexAndValueString.Split(",");
-        else
-            indexAndValueStringArray = indexAndValueString.Split(".");
-            
         int index = int.Parse(indexAndValueStringArray[0]);
-        bool value = Convert.ToBoolean(int.Parse(indexAndValueStringArray[1][0].ToString()));
+        bool value = Convert.ToBoolean(int.Parse(indexAndValueStringArray[1].ToString()));
 
         if (index < 0 || index >= _operandAmount)
         {
@@ -55,13 +48,12 @@ public class LogicGateEvaluator : MonoBehaviour
 
     private void Evaluate()
     {
-        if (_operandList.Aggregate(GetLambdaExpression(_logicGate)) != _lastResult)
-        {
-            _lastResult = !_lastResult;
+        if (_operandList.Aggregate(GetLambdaExpression(_logicGate)) == _lastResult) return;
 
-            if (_lastResult) EvaluateTrue?.Invoke();
-            else EvaluateFalse?.Invoke();
-        }
+        _lastResult = !_lastResult;
+
+        if (_lastResult) EvaluateTrue?.Invoke();
+        else EvaluateFalse?.Invoke();
     }
 
     private Func<bool, bool, bool> GetLambdaExpression(LogicGate logicGate)

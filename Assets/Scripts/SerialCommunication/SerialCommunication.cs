@@ -5,25 +5,29 @@ using UnityEngine.Events;
 using System.IO.Ports;
 using System.Threading;
 
+[RequireComponent (typeof(DataDistributer))]
 public class SerialCommunication : MonoBehaviour
 {
+    private DataDistributer _dataDistributer;
+
     [SerializeField] private string _portName;
     private SerialPort _serialPort;
+
     private Thread _thread;
     private readonly object _lock = new();
     private bool _isLooping;
 
-    public UnityEvent<int> OnDataReceived;
-
     private void Awake()
     {
         if (GameManager.serialCommunication == null)
-			GameManager.serialCommunication = this;
-		else 
-		{
-			Debug.LogError($"A SerialCommunication already exists, deleting self: {name}");
-			Destroy(gameObject);
-		}
+            GameManager.serialCommunication = this;
+        else
+        {
+            Debug.LogError($"A SerialCommunication already exists, deleting self: {name}");
+            Destroy(gameObject);
+        }
+
+        _dataDistributer = GetComponent<DataDistributer>();
 
         StartSerialCommunication();
     }
@@ -58,17 +62,14 @@ public class SerialCommunication : MonoBehaviour
                 continue;
             }
 
-            // Problem, can not send info or prob invoke if in another thread
-            // Maybe better to save it in a variable which then gets read by other scripts
-            Debug.Log($"Receiving Data: {dataParsed}");
-            // GameManager.changeDebugText.ChangeText($"{dataParsed}");
-            OnDataReceived?.Invoke(dataParsed);
+            _dataDistributer.data = dataParsed;
+            _dataDistributer.hasNewData = true;
         }
 
         if (_serialPort.IsOpen)
             _serialPort.Close();
     }
-    
+
     private bool IsLooping() { lock (_lock) { return _isLooping; } }
 
     private void OnDestroy() => StopThread();

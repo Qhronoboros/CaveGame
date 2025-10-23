@@ -13,6 +13,8 @@ public class CrawlVelocity : MonoBehaviour
     [SerializeField] private ContinuousMoveProvider _continuousMoveProvider;
     [SerializeField] private ContinuousTurnProvider _continuousTurnProvider;
 
+    private List<CrawlingHand> crawlingHands = new List<CrawlingHand>();
+
     private XRHandJoint _leftHandJoint;
     public XRHandJoint LeftHandJoint
     {
@@ -81,7 +83,7 @@ public class CrawlVelocity : MonoBehaviour
         XRHandJoint handJoint = hand.GetJoint(XRHandJointID.Palm);
         
         handJoint.TryGetLinearVelocity(out Vector3 linearVelocity);
-        
+
         // Debug.Log($"{hand.handedness} linearVelocity: {linearVelocity}");
 
         SetHandJoint(hand.handedness, false);
