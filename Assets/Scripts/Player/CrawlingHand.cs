@@ -21,7 +21,7 @@ public class CrawlingHand
             UpdateMovementValues();
         }
     }
-    private Vector2 _lastJointLocalCameraPosition;
+    private Vector3 _lastJointLocalCameraPosition;
 
     public CrawlingHand(Crawling crawlingParent, Handedness handedness)
     {
@@ -39,6 +39,7 @@ public class CrawlingHand
 
     public void SetInactive()
     {
+        Joint = default;
         isActive = false;
         _lastJointLocalCameraPosition = Vector2.zero;
         forwardMagnitude = 0.0f;
@@ -50,26 +51,27 @@ public class CrawlingHand
         if (!isActive) return;
 
         Joint.TryGetPose(out Pose jointPose);
-        
+
         // XROrigin to World Space
-        Pose jointPoseWS = jointPose.GetTransformedBy(crawlingParent._origin.transform);
-        Vector2 jointPosePositionWS = new Vector2(jointPoseWS.position.x, jointPoseWS.position.z);
+        Vector3 jointPosePositionWS = jointPose.position + crawlingParent.origin.transform.position;
 
         // World Space to Camera
-        Vector2 cameraPosition = new Vector2(Camera.main.transform.position.x, Camera.main.transform.position.z);
-        Vector2 jointLocalCameraPosition = jointPosePositionWS - cameraPosition;
+        Vector3 jointLocalCameraPosition = jointPosePositionWS - Camera.main.transform.position;
 
-        if (_lastJointLocalCameraPosition == Vector2.zero)
+        if (_lastJointLocalCameraPosition == Vector3.zero)
         {
             _lastJointLocalCameraPosition = jointLocalCameraPosition;
             return;
         }
 
-        // Change the turn amount depending on how close the hand is to the camera
-        turnAmount = Vector2.SignedAngle(_lastJointLocalCameraPosition, jointLocalCameraPosition);
+        Vector2 jointLocalCameraPositionXZ = VectorHelper.Vector3ToVector2(jointLocalCameraPosition);
+        Vector2 _lastJointLocalCameraPositionXZ = VectorHelper.Vector3ToVector2(_lastJointLocalCameraPosition);
 
-        float lastJointPositionMagnitude = _lastJointLocalCameraPosition.magnitude;
-        float jointPositionMagnitude = jointLocalCameraPosition.magnitude;
+        // Change the turn amount depending on how close the hand is to the camera
+        turnAmount = Vector2.SignedAngle(_lastJointLocalCameraPositionXZ, jointLocalCameraPositionXZ);
+
+        float lastJointPositionMagnitude = _lastJointLocalCameraPositionXZ.magnitude;
+        float jointPositionMagnitude = jointLocalCameraPositionXZ.magnitude;
 
         forwardMagnitude = (lastJointPositionMagnitude - jointPositionMagnitude) * 1.0f;
 

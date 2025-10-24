@@ -1,5 +1,6 @@
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 public class TransformToDefault : MonoBehaviour
@@ -7,35 +8,34 @@ public class TransformToDefault : MonoBehaviour
     [SerializeField] private float _force = 10;
     private Rigidbody _rigidbody;
 
-    private void Awake()
-    {
-        _rigidbody = GetComponent<Rigidbody>();
-    }
+    public UnityEvent<Vector3> SettingVelocityStart;
+    public UnityEvent<Vector3> SettingVelocityEnd;
+
+    public UnityEvent<Vector3> SetPositionOrigin;
+    public UnityEvent<Vector3> SetPositionMesh;
+
+    private void Awake() => _rigidbody = GetComponent<Rigidbody>();
 
     void FixedUpdate()
     {
         transform.localRotation = quaternion.identity;
         _rigidbody.angularVelocity = Vector3.zero;
 
-        Vector3 localOriginPositionWS = transform.position - transform.localPosition;
+        float multiplier = _force * Mathf.Min(transform.localPosition.magnitude, 1.0f);
 
-        // Bug has to do something over here
-        float multiplier = _force * Mathf.Min(Vector3.Distance(localOriginPositionWS, transform.position), 1.0f);
+        _rigidbody.linearVelocity = (transform.rotation * -transform.localPosition).normalized * multiplier;
 
-        if (name == "Right Hand Tracking")
-        {
-            Debug.Log(multiplier);
-        }
+        // if (name == "Right Hand Tracking")
+        // {
+        //     Debug.Log(transform.localPosition);
+        // }
+        // GameManager.changeDebugText.ChangeText($"{_rigidbody.linearVelocity}");
 
-        if (Vector3.Distance(localOriginPositionWS, transform.position) > 2.0f)
-        {
-            // Debug.Log("Whoops");
-            _rigidbody.linearVelocity = Vector3.zero;
-        }
-        else
-        {
-            _rigidbody.linearVelocity = (localOriginPositionWS - transform.position).normalized * multiplier;
-            // GameManager.changeDebugText.ChangeText($"{_rigidbody.linearVelocity}");
-        }
+        // Temporary Debugging
+        // SettingVelocityStart?.Invoke(transform.position);
+        // SettingVelocityEnd?.Invoke(transform.position + (transform.rotation * -transform.localPosition).normalized * multiplier);
+
+        // SetPositionOrigin?.Invoke(-transform.localPosition);
+        // SetPositionMesh?.Invoke(Vector3.zero);
     }
 }

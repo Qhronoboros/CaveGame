@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using System.IO.Ports;
 using System.Threading;
 
-[RequireComponent (typeof(DataDistributer))]
+[RequireComponent(typeof(DataDistributer))]
 public class SerialCommunication : MonoBehaviour
 {
     private DataDistributer _dataDistributer;
