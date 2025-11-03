@@ -518,8 +518,8 @@ MonoBehaviour:
   m_Camera: {fileID: 1488397374}
   m_OriginBaseGameObject: {fileID: 72993571}
   m_CameraFloorOffsetObject: {fileID: 627646813}
-  m_RequestedTrackingOriginMode: 1
-  m_CameraYOffset: 0.25
+  m_RequestedTrackingOriginMode: 2
+  m_CameraYOffset: 1.25
 --- !u!143 &72993575
 CharacterController:
   m_ObjectHideFlags: 0
@@ -13495,8 +13495,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.04
-      minScalar: 0.025
+      scalar: 0.015
+      minScalar: 0.005
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -18562,8 +18562,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.04
-      minScalar: 0.025
+      scalar: 0.015
+      minScalar: 0.005
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -24317,7 +24317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolation: 3
   _minimum: 550
-  _maximum: 650
+  _maximum: 630
   ValueCalculated:
     m_PersistentCalls:
       m_Calls:
@@ -24435,7 +24435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolation: 3
   _minimum: 550
-  _maximum: 650
+  _maximum: 630
   ValueCalculated:
     m_PersistentCalls:
       m_Calls:

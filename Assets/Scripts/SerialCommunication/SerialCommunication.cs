@@ -57,15 +57,17 @@ public class SerialCommunication : MonoBehaviour
         {
             string stringData = _serialPort.ReadLine();
 
+            // Debug.Log(stringData);
+
             // * Make sure the data being received has a - as a divider
             string[] data = stringData.Split('-');
 
-            for (int i = 0; i < data.Length; i++)
+            for (int i = 0; i < _dataDistributers.Count; i++)
             {
                 if (!int.TryParse(data[i], out int dataParsed))
                 {
                     Debug.LogError($"Received Data {data[i]} is not an integer");
-                    continue;
+                    break;
                 }
 
                 _dataDistributers[i].data = dataParsed;
