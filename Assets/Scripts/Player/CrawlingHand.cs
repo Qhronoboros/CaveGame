@@ -52,6 +52,8 @@ public class CrawlingHand
 
         Joint.TryGetPose(out Pose jointPose);
 
+
+        // * No rotations, since it would mess up comparing with older data
         // XROrigin to World Space
         Vector3 jointPosePositionWS = jointPose.position + crawlingParent.origin.transform.position;
 
@@ -67,15 +69,23 @@ public class CrawlingHand
         Vector2 jointLocalCameraPositionXZ = VectorHelper.Vector3ToVector2(jointLocalCameraPosition);
         Vector2 _lastJointLocalCameraPositionXZ = VectorHelper.Vector3ToVector2(_lastJointLocalCameraPosition);
 
-        // Change the turn amount depending on how close the hand is to the camera
-        turnAmount = Vector2.SignedAngle(_lastJointLocalCameraPositionXZ, jointLocalCameraPositionXZ);
+        // Change the turn amount depending on how close the joint is to the camera
+        float turnMultiplier = Mathf.Min(jointLocalCameraPositionXZ.magnitude * 2.0f, 1.0f);
+        turnAmount = Vector2.SignedAngle(_lastJointLocalCameraPositionXZ, jointLocalCameraPositionXZ) * turnMultiplier;
 
         float lastJointPositionMagnitude = _lastJointLocalCameraPositionXZ.magnitude;
         float jointPositionMagnitude = jointLocalCameraPositionXZ.magnitude;
 
-        forwardMagnitude = (lastJointPositionMagnitude - jointPositionMagnitude) * 1.0f;
+        forwardMagnitude = lastJointPositionMagnitude - jointPositionMagnitude;
 
         _lastJointLocalCameraPosition = jointLocalCameraPosition;
+
+        if (handedness == Handedness.Right)
+        {
+            // Debug stuff
+            // Debug.Log($"ForwardMagnitude: {forwardMagnitude}");
+            Debug.Log($"TurnMultiplier: {turnMultiplier}");
+        }
 
         // GameManager.changeDebugText.ChangeText($"{magnitudeDelta}");
     }

@@ -1,14 +1,15 @@
 // Source: https://www.alanzucconi.com/2016/12/01/asynchronous-serial-communication/
 
 using UnityEngine;
-using UnityEngine.Events;
 using System.IO.Ports;
 using System.Threading;
+using System.Collections.Generic;
 
-[RequireComponent(typeof(DataDistributer))]
+// [RequireComponent(typeof(DataDistributer))]
 public class SerialCommunication : MonoBehaviour
 {
-    private DataDistributer _dataDistributer;
+    // private DataDistributer _dataDistributer;
+    [SerializeField] private List<DataDistributer> _dataDistributers;
 
     [SerializeField] private string _portName;
     private SerialPort _serialPort;
@@ -27,7 +28,7 @@ public class SerialCommunication : MonoBehaviour
             Destroy(gameObject);
         }
 
-        _dataDistributer = GetComponent<DataDistributer>();
+        // _dataDistributer = GetComponent<DataDistributer>();
 
         StartSerialCommunication();
     }
@@ -54,16 +55,22 @@ public class SerialCommunication : MonoBehaviour
 
         while (IsLooping())
         {
-            string data = _serialPort.ReadLine();
+            string stringData = _serialPort.ReadLine();
 
-            if (!int.TryParse(data, out int dataParsed))
+            // * Make sure the data being received has a - as a divider
+            string[] data = stringData.Split('-');
+
+            for (int i = 0; i < data.Length; i++)
             {
-                Debug.LogError($"Received Data {data} is not an integer");
-                continue;
-            }
+                if (!int.TryParse(data[i], out int dataParsed))
+                {
+                    Debug.LogError($"Received Data {data[i]} is not an integer");
+                    continue;
+                }
 
-            _dataDistributer.data = dataParsed;
-            _dataDistributer.hasNewData = true;
+                _dataDistributers[i].data = dataParsed;
+                _dataDistributers[i].hasNewData = true;
+            }
         }
 
         if (_serialPort.IsOpen)

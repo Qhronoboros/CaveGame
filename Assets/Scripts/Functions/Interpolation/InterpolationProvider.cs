@@ -39,6 +39,7 @@ public class InterpolationProvider : MonoBehaviour
         if (calculatedValue == float.PositiveInfinity) return;
         // Debug.Log(calculatedValue);
         GameManager.changeDebugText.ChangeText($"{calculatedValue:0.000}");
+
         ValueCalculated?.Invoke(calculatedValue);
     }
 }
