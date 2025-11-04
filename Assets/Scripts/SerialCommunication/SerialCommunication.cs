@@ -30,7 +30,7 @@ public class SerialCommunication : MonoBehaviour
 
         // _dataDistributer = GetComponent<DataDistributer>();
 
-        StartSerialCommunication();
+        // StartSerialCommunication();
     }
 
     public void SetPortName(string name) => _portName = name;
@@ -57,6 +57,8 @@ public class SerialCommunication : MonoBehaviour
         _isLooping = true;
 
         _serialPort = new SerialPort(_portName, 9600);
+
+        _serialPort.Close();
         _serialPort.Open();
 
         while (IsLooping())
@@ -91,5 +93,4 @@ public class SerialCommunication : MonoBehaviour
 
     private void OnEnable() => StartSerialCommunication();
     private void OnDisable() => StopThread();
-    private void OnDestroy() => StopThread();
 }

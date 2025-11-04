@@ -52,13 +52,20 @@ public class CrawlingHand
 
         Joint.TryGetPose(out Pose jointPose);
 
+        Pose jointPoseWS = jointPose.GetTransformedBy(
+            new Pose(crawlingParent.origin.transform.position, crawlingParent.origin.transform.rotation));
 
         // * No rotations, since it would mess up comparing with older data
         // XROrigin to World Space
-        Vector3 jointPosePositionWS = jointPose.position + crawlingParent.origin.transform.position;
+        // Vector3 jointPosePositionWS = jointPose.position + crawlingParent.origin.transform.position;
+
 
         // World Space to Camera
-        Vector3 jointLocalCameraPosition = jointPosePositionWS - Camera.main.transform.position;
+        // Vector3 jointLocalCameraPosition = jointPosePositionWS - Camera.main.transform.position;
+        Vector3 jointLocalCameraPosition = jointPoseWS.position - Camera.main.transform.position;
+
+        // ! Maybe try this?
+        Vector3 jointLocalCameraPositionRotated = Camera.main.transform.rotation * jointLocalCameraPosition;
 
         if (_lastJointLocalCameraPosition == Vector3.zero)
         {
@@ -84,7 +91,7 @@ public class CrawlingHand
         {
             // Debug stuff
             // Debug.Log($"ForwardMagnitude: {forwardMagnitude}");
-            Debug.Log($"TurnMultiplier: {turnMultiplier}");
+            // Debug.Log($"TurnMultiplier: {turnMultiplier}");
         }
 
         // GameManager.changeDebugText.ChangeText($"{magnitudeDelta}");
