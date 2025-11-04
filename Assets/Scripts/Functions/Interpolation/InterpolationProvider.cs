@@ -15,6 +15,8 @@ public class InterpolationProvider : MonoBehaviour
 
     public void Calculate(float value)
     {
+        if (!gameObject.activeSelf) return;
+
         float calculatedValue = float.PositiveInfinity;
 
         switch (_interpolation)

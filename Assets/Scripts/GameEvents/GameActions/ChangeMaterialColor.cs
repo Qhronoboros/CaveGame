@@ -21,12 +21,16 @@ public class ChangeMaterialColor : MonoBehaviour
 
     public void SetColorActive(int id)
     {
+        if (!gameObject.activeSelf) return;
+
         _colorDict[_colorPriorityList[id]] = true;
         SetPriorityColor();
     }
 
     public void SetColorInactive(int id)
     {
+        if (!gameObject.activeSelf) return;
+        
         _colorDict[_colorPriorityList[id]] = false;
         SetPriorityColor();
     }

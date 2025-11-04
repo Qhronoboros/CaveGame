@@ -46,6 +46,12 @@ public class SerialCommunication : MonoBehaviour
 
     public void StopThread() { lock (_lock) { _isLooping = false; } }
 
+    public void RestartThread()
+    {
+        StopThread();
+        StartSerialCommunication();
+    }
+
     private void ThreadLoop()
     {
         _isLooping = true;
@@ -61,6 +67,8 @@ public class SerialCommunication : MonoBehaviour
 
             // * Make sure the data being received has a - as a divider
             string[] data = stringData.Split('-');
+
+            if (data.Length != _dataDistributers.Count) continue;
 
             for (int i = 0; i < _dataDistributers.Count; i++)
             {
@@ -81,5 +89,7 @@ public class SerialCommunication : MonoBehaviour
 
     private bool IsLooping() { lock (_lock) { return _isLooping; } }
 
+    private void OnEnable() => StartSerialCommunication();
+    private void OnDisable() => StopThread();
     private void OnDestroy() => StopThread();
 }

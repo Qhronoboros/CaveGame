@@ -66,6 +66,7 @@ public class ComplexCollisionEvent : MonoBehaviour
 
     // private void OnCollisionEnter(Collision collision)
     // {
+    //     if (!gameObject.activeSelf) return;
     //     GameObject collisionObject = collision.gameObject;
     //     if (!LayerHelper.IsInLayerMask(_layerMask, collisionObject.layer)) return;
 
@@ -84,6 +85,8 @@ public class ComplexCollisionEvent : MonoBehaviour
     // * So knowing which childCollider called it is impossible
     private void OnCollisionStay(Collision collision)
     {
+        if (!gameObject.activeSelf) return;
+
         GameObject collisionObject = collision.gameObject;
         if (!LayerHelper.IsInLayerMask(_layerMask, collisionObject.layer)) return;
 
@@ -102,6 +105,7 @@ public class ComplexCollisionEvent : MonoBehaviour
 
     // private void OnCollisionExit(Collision collision)
     // {
+    //     if (!gameObject.activeSelf) return;
     //     if (!_isColliding) return;
 
     //     GameObject collisionObject = collision.gameObject;

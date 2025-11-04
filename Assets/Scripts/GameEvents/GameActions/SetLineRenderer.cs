@@ -13,10 +13,12 @@ public class SetLineRenderer : MonoBehaviour
 
     public void SetLocalStartPosition(Vector3 localStartPosition)
     {
+        if (!gameObject.activeSelf) return;
         _lineRenderer.SetPosition(0, localStartPosition);
     }
     public void SetLocalEndPosition(Vector3 localEndPosition)
     {
+        if (!gameObject.activeSelf) return;
         _lineRenderer.SetPosition(1, localEndPosition);
     }
 

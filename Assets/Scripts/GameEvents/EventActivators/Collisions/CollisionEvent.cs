@@ -50,6 +50,8 @@ public class CollisionEvent : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
+        if (!gameObject.activeSelf) return;
+        
         GameObject collisionObject = collision.gameObject;
         if (!LayerHelper.IsInLayerMask(_layerMask, collisionObject.layer)) return;
 

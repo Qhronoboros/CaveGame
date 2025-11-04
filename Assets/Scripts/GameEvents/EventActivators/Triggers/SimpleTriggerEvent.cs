@@ -11,6 +11,8 @@ public class SimpleTriggerEvent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!gameObject.activeSelf) return;
+
         GameObject collisionObject = other.gameObject;
         if (!LayerHelper.IsInLayerMask(_layerMask, collisionObject.layer)) return;
 
@@ -19,6 +21,8 @@ public class SimpleTriggerEvent : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (!gameObject.activeSelf) return;
+        
         GameObject collisionObject = other.gameObject;
         if (!LayerHelper.IsInLayerMask(_layerMask, collisionObject.layer)) return;
 

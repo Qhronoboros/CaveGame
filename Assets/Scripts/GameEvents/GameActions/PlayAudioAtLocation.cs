@@ -7,6 +7,7 @@ public class PlayAudioAtLocation : MonoBehaviour
 
     public void PlayAudio()
     {
+        if (!gameObject.activeSelf) return;
         if (audioName == "") return;
 
         GameManager.audioManager.PlayOneShot(audioName, playPosition);

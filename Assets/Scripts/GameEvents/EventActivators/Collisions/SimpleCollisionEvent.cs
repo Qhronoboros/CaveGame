@@ -11,6 +11,8 @@ public class SimpleCollisionEvent : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (!gameObject.activeSelf) return;
+        
         GameObject collisionObject = collision.gameObject;
         if (!LayerHelper.IsInLayerMask(_layerMask, collisionObject.layer)) return;
 
@@ -19,6 +21,8 @@ public class SimpleCollisionEvent : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
+        if (!gameObject.activeSelf) return;
+
         GameObject collisionObject = collision.gameObject;
         if (!LayerHelper.IsInLayerMask(_layerMask, collisionObject.layer)) return;
         

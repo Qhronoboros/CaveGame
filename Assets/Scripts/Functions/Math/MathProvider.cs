@@ -17,7 +17,8 @@ public class MathProvider : MonoBehaviour
 
     public void ReceiveData(float value)
     {
-        // ! Figure out how to know which value comes from which DataDistributer
+        if (!gameObject.activeSelf) return;
+
         _operandList.Add(value);
         Evaluate();
     }

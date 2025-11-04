@@ -30,6 +30,8 @@ public class LogicGateEvaluator : MonoBehaviour
     // Right side of the separator is the bool value (.1 or .0)
     public void SetOperand(float indexAndValue)
     {
+        if (!gameObject.activeSelf) return;
+
         // Not elegant, but it works
         string[] indexAndValueStringArray = indexAndValue.ToString("0.0").Split(',', '.');
         

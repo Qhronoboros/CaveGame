@@ -50,6 +50,8 @@ public class TriggerEvent : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (!gameObject.activeSelf) return;
+
         GameObject collisionObject = other.gameObject;
         if (!LayerHelper.IsInLayerMask(_layerMask, collisionObject.layer)) return;
 
