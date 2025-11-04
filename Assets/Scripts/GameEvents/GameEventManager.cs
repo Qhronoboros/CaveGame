@@ -38,7 +38,7 @@ public class GameEventManager : MonoBehaviour
     {
         if (!GetGameEvent(gameEventTitle, out GameEvent gameEvent)) return;
         gameEvent.Trigger();
-        OnGameEventTriggered.Invoke();
+        OnGameEventTriggered?.Invoke();
     }
     
     public bool IsGameEventTriggered(string gameEventTitle)

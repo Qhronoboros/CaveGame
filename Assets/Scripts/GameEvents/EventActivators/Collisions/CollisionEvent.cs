@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
 // Class works with compoundColliders
+// Sends callbacks whenever something first collides with it
+// And when all colliders exit
 public class CollisionEvent : MonoBehaviour
 {
     [SerializeField] private LayerMask _layerMask;
@@ -17,45 +18,67 @@ public class CollisionEvent : MonoBehaviour
 
     private bool _isColliding = false;
 
+    private Coroutine _coroutine;
+    private bool _coroutineActive = false;
+
+    // Gets invoked only once when a collider collides with the object
+    // Needs to wait for all external colliders stop colliding before invoking again
     public UnityEvent OnColliding;
+    // Gets invoked when all external colliders stop colliding with this object
     public UnityEvent OnNotColliding;
 
-    private void FixedUpdate() => EvaluateContactList();
-    
-    private void EvaluateContactList()
-    {
-        if (_isColliding && _contactList.Count == 0)
-        {
-            _isColliding = false;
-            OnNotColliding.Invoke();
-        }
+    private void Start() => _coroutine = StartCoroutine(EvaluateContactList());
 
-        _previousContactList = _contactList;
-        _contactList.Clear();
+    // After OnCollisionStay, check if there are any collisions
+    IEnumerator EvaluateContactList()
+    {
+        _coroutineActive = true;
+        while (_coroutineActive)
+        {
+            yield return new WaitForFixedUpdate();
+
+            if (_isColliding && _contactList.Count == 0)
+            {
+                _isColliding = false;
+                OnNotColliding?.Invoke();
+            }
+
+            _previousContactList = _contactList;
+            _contactList.Clear();
+        }
     }
 
     private void OnCollisionStay(Collision collision)
     {
+        if (!gameObject.activeSelf) return;
+        
         GameObject collisionObject = collision.gameObject;
         if (!LayerHelper.IsInLayerMask(_layerMask, collisionObject.layer)) return;
+
+        if (!_contactList.Contains(collisionObject))
+            _contactList.Add(collisionObject);
 
         if (_isColliding) return;
 
         _isColliding = true;
-        OnColliding.Invoke();
+        OnColliding?.Invoke();
     }
 
     private void ResetValues()
     {
+        _coroutineActive = false;
+        StopCoroutine(_coroutine);
+
         if (_isColliding)
         {
             _isColliding = false;
-            OnNotColliding.Invoke();
+            OnNotColliding?.Invoke();
         }
 
         _previousContactList.Clear();
         _contactList.Clear();
     }
 
+    private void OnEnable() => Start();
     private void OnDisable() => ResetValues();
 }

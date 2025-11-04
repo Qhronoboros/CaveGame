@@ -59,13 +59,14 @@ public class ComplexCollisionEvent : MonoBehaviour
             if (ValidateCollisionActivity())
             {
                 _isColliding = false;
-                OnNotColliding.Invoke();
+                OnNotColliding?.Invoke();
             }
         }
     }
 
     // private void OnCollisionEnter(Collision collision)
     // {
+    //     if (!gameObject.activeSelf) return;
     //     GameObject collisionObject = collision.gameObject;
     //     if (!LayerHelper.IsInLayerMask(_layerMask, collisionObject.layer)) return;
 
@@ -84,6 +85,8 @@ public class ComplexCollisionEvent : MonoBehaviour
     // * So knowing which childCollider called it is impossible
     private void OnCollisionStay(Collision collision)
     {
+        if (!gameObject.activeSelf) return;
+
         GameObject collisionObject = collision.gameObject;
         if (!LayerHelper.IsInLayerMask(_layerMask, collisionObject.layer)) return;
 
@@ -95,13 +98,14 @@ public class ComplexCollisionEvent : MonoBehaviour
         if (_isColliding) return;
 
         _isColliding = true;
-        OnColliding.Invoke();
+        OnColliding?.Invoke();
 
         _ValidateCoroutine = StartCoroutine(ValidateAfterPhysics());
     }
 
     // private void OnCollisionExit(Collision collision)
     // {
+    //     if (!gameObject.activeSelf) return;
     //     if (!_isColliding) return;
 
     //     GameObject collisionObject = collision.gameObject;
@@ -131,7 +135,7 @@ public class ComplexCollisionEvent : MonoBehaviour
         if (_isColliding)
         {
             _isColliding = false;
-            OnNotColliding.Invoke();
+            OnNotColliding?.Invoke();
             StopCoroutine(_ValidateCoroutine);
         }
 
