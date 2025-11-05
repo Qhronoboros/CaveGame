@@ -115,7 +115,11 @@
                 "type": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "ShapeBuilder.ActiveShapeIndex",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 "value": "{\"m_Value\":11}"
+=======
+                "value": "{\"m_Value\":6}"
+>>>>>>> Stashed changes
 =======
                 "value": "{\"m_Value\":6}"
 >>>>>>> Stashed changes
