@@ -14,14 +14,16 @@ public class GameManager : MonoBehaviour
 	public static SerialCommunication serialCommunication;
 
 	public static ChangeDebugText changeDebugText;
-	
+
+	public GameObject playerLocationObject;
+
 	public bool gameHasEnded = false;
 	
 	private void Awake()
 	{
 		if (instance == null)
 			instance = this;
-		else 
+		else
 		{
 			Debug.LogError($"A GameManager already exists, deleting self: {name}");
 			Destroy(gameObject);

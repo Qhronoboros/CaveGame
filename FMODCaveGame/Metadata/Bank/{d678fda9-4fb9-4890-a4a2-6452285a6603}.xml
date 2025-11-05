@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="Bank" id="{d678fda9-4fb9-4890-a4a2-6452285a6603}">
+		<property name="name">
+			<value>Slow Intensity</value>
+		</property>
+		<relationship name="folder">
+			<destination>{c63865de-7ca9-416a-b40f-15347ebeaaee}</destination>
+		</relationship>
+	</object>
+</objects>

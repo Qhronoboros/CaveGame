@@ -3434,6 +3434,7 @@ GameObject:
   - component: {fileID: 220092712}
   - component: {fileID: 220092714}
   - component: {fileID: 220092713}
+  - component: {fileID: 220092715}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -3482,6 +3483,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSongName: 
+--- !u!114 &220092715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220092711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ead7a8c4d470ed04fadf2a27f29253b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startOnAwake: 1
+  looping: 0
+  active: 0
+  duration: 0.1
+  elapsedTime: 0
+  TimerStart:
+    m_PersistentCalls:
+      m_Calls: []
+  TimerEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 220092714}
+        m_TargetAssemblyTypeName: MusicPlayer, Assembly-CSharp
+        m_MethodName: PlayMusic
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Cave Ambience
+          m_BoolArgument: 0
+        m_CallState: 2
+  TimerStopped:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &220654481
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25810,6 +25849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a5f1fa14d4213048a54fd64deb30f0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLocationObject: {fileID: 1488397369}
   gameHasEnded: 0
 --- !u!136 &1298751626
 CapsuleCollider:
@@ -27605,7 +27645,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1488397370}
   - component: {fileID: 1488397374}
-  - component: {fileID: 1488397373}
+  - component: {fileID: 1488397375}
   - component: {fileID: 1488397372}
   - component: {fileID: 1488397371}
   m_Layer: 8
@@ -27783,14 +27823,6 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
---- !u!81 &1488397373
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1488397369}
-  m_Enabled: 1
 --- !u!20 &1488397374
 Camera:
   m_ObjectHideFlags: 0
@@ -27842,6 +27874,20 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1488397375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488397369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1001 &1490312161
 PrefabInstance:
   m_ObjectHideFlags: 0

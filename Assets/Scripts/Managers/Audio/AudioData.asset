@@ -12,4 +12,104 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f41dc81c96cc5e428dc826a1555587c, type: 3}
   m_Name: AudioData
   m_EditorClassIdentifier: 
-  audioLinkList: []
+  audioLinkList:
+  - audioName: Dialogue 1
+    eventReference:
+      Guid:
+        Data1: 728705882
+        Data2: 1292665597
+        Data3: 1622842789
+        Data4: 1981886480
+      Path: event:/Dialogue/Dialogue 1
+    preInstantiate: 0
+    isMusic: 0
+  - audioName: Dialogue 2
+    eventReference:
+      Guid:
+        Data1: -1272894650
+        Data2: 1129216284
+        Data3: -957416818
+        Data4: -480961656
+      Path: event:/Dialogue/Dialogue 2
+    preInstantiate: 0
+    isMusic: 0
+  - audioName: Dialogue 3
+    eventReference:
+      Guid:
+        Data1: 53352226
+        Data2: 1210354023
+        Data3: -1892689240
+        Data4: 1385956570
+      Path: event:/Dialogue/Dialogue 3
+    preInstantiate: 0
+    isMusic: 0
+  - audioName: Dialogue 4
+    eventReference:
+      Guid:
+        Data1: -1196961026
+        Data2: 1213194960
+        Data3: -1218609991
+        Data4: -515521263
+      Path: event:/Dialogue/Dialogue 4
+    preInstantiate: 0
+    isMusic: 0
+  - audioName: Dialogue 5
+    eventReference:
+      Guid:
+        Data1: -870482552
+        Data2: 1291758011
+        Data3: -1863777134
+        Data4: 659320355
+      Path: event:/Dialogue/Dialogue 5
+    preInstantiate: 0
+    isMusic: 0
+  - audioName: Dialogue 6
+    eventReference:
+      Guid:
+        Data1: 513141249
+        Data2: 1236968179
+        Data3: -765614186
+        Data4: -621039541
+      Path: event:/Dialogue/Dialogue 6
+    preInstantiate: 0
+    isMusic: 0
+  - audioName: Slow Intensity
+    eventReference:
+      Guid:
+        Data1: 1763901061
+        Data2: 1194890961
+        Data3: 924867756
+        Data4: -1613015127
+      Path: event:/SFXs/Intensity/Slow Intensity
+    preInstantiate: 0
+    isMusic: 0
+  - audioName: Horror Intensity
+    eventReference:
+      Guid:
+        Data1: 1129569697
+        Data2: 1076332392
+        Data3: -280413023
+        Data4: -1905442629
+      Path: event:/SFXs/Intensity/Horror Intensity
+    preInstantiate: 0
+    isMusic: 0
+  - audioName: Sparkles
+    eventReference:
+      Guid:
+        Data1: 2045438836
+        Data2: 1339692772
+        Data3: -1861709913
+        Data4: -2033273764
+      Path: event:/SFXs/Sparkles
+    preInstantiate: 1
+    isMusic: 0
+  - audioName: Cave Ambience
+    eventReference:
+      Guid:
+        Data1: -126952364
+        Data2: 1127466552
+        Data3: -1501746769
+        Data4: 723771821
+      Path: event:/Ambience/Cave Ambience
+    preInstantiate: 0
+    isMusic: 1

@@ -27,7 +27,7 @@ public class MusicPlayer : MonoBehaviour
         currentSongName = songName;
         currentSong = GetEventInstance(songName);
         
-        // _audioManager.PlayInstanceAtLocation(currentSong, GameManager.playerController.gameObject);
+        _audioManager.PlayInstanceAttached(currentSong, GameManager.instance.playerLocationObject);
     }
     
     public void StopMusic()
