@@ -77,7 +77,7 @@ public class CrawlingHand
         Vector2 _lastJointLocalCameraPositionXZ = VectorHelper.Vector3ToVector2(_lastJointLocalCameraPosition);
 
         // Change the turn amount depending on how close the joint is to the camera
-        float turnMultiplier = Mathf.Min(jointLocalCameraPositionXZ.magnitude * 2.0f, 1.0f);
+        float turnMultiplier = Mathf.Min(jointLocalCameraPositionXZ.magnitude * 1.0f, 1.0f);
         turnAmount = Vector2.SignedAngle(_lastJointLocalCameraPositionXZ, jointLocalCameraPositionXZ) * turnMultiplier;
 
         float lastJointPositionMagnitude = _lastJointLocalCameraPositionXZ.magnitude;
