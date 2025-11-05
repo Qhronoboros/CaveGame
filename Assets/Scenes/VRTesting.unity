@@ -1324,7 +1324,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &48300263
 Transform:
   m_ObjectHideFlags: 0
@@ -1356,8 +1356,8 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 256
-  _inRotation: {x: 0, y: 0, z: 0}
-  _outRotation: {x: 0, y: 0, z: 0}
+  _inRotation: {x: 50, y: 0, z: 0}
+  _outRotation: {x: -50, y: 0, z: 0}
 --- !u!65 &48300265
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24983,12 +24983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bd75b0b416e33d4a9ee723243856b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterController: {fileID: 0}
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  steps: 0
-  desiredRotation: {x: 0, y: 0, z: 0}
+  steps: 50
 --- !u!43 &783836515
 Mesh:
   m_ObjectHideFlags: 0
