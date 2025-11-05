@@ -4,7 +4,7 @@ using UnityEngine;
 public class ModifyRotationPitch : MonoBehaviour
 {
     [SerializeField] private int steps;
-    private Vector3 _desiredRotation;
+        private Vector3 _desiredRotation;
 
     private Coroutine _coroutine;
     private bool _coroutineActive = false;
