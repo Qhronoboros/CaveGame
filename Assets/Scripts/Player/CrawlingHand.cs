@@ -59,13 +59,9 @@ public class CrawlingHand
         // XROrigin to World Space
         // Vector3 jointPosePositionWS = jointPose.position + crawlingParent.origin.transform.position;
 
-
         // World Space to Camera
         // Vector3 jointLocalCameraPosition = jointPosePositionWS - Camera.main.transform.position;
         Vector3 jointLocalCameraPosition = jointPoseWS.position - Camera.main.transform.position;
-
-        // ! Maybe try this?
-        Vector3 jointLocalCameraPositionRotated = Camera.main.transform.rotation * jointLocalCameraPosition;
 
         if (_lastJointLocalCameraPosition == Vector3.zero)
         {

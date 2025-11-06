@@ -21,7 +21,7 @@ MonoBehaviour:
         Data3: 1622842789
         Data4: 1981886480
       Path: event:/Dialogue/Dialogue 1
-    preInstantiate: 0
+    preInstantiate: 1
     isMusic: 0
   - audioName: Dialogue 2
     eventReference:
@@ -31,7 +31,7 @@ MonoBehaviour:
         Data3: -957416818
         Data4: -480961656
       Path: event:/Dialogue/Dialogue 2
-    preInstantiate: 0
+    preInstantiate: 1
     isMusic: 0
   - audioName: Dialogue 3
     eventReference:
@@ -41,7 +41,7 @@ MonoBehaviour:
         Data3: -1892689240
         Data4: 1385956570
       Path: event:/Dialogue/Dialogue 3
-    preInstantiate: 0
+    preInstantiate: 1
     isMusic: 0
   - audioName: Dialogue 4
     eventReference:
@@ -51,7 +51,7 @@ MonoBehaviour:
         Data3: -1218609991
         Data4: -515521263
       Path: event:/Dialogue/Dialogue 4
-    preInstantiate: 0
+    preInstantiate: 1
     isMusic: 0
   - audioName: Dialogue 5
     eventReference:
@@ -61,7 +61,7 @@ MonoBehaviour:
         Data3: -1863777134
         Data4: 659320355
       Path: event:/Dialogue/Dialogue 5
-    preInstantiate: 0
+    preInstantiate: 1
     isMusic: 0
   - audioName: Dialogue 6
     eventReference:
@@ -71,7 +71,7 @@ MonoBehaviour:
         Data3: -765614186
         Data4: -621039541
       Path: event:/Dialogue/Dialogue 6
-    preInstantiate: 0
+    preInstantiate: 1
     isMusic: 0
   - audioName: Slow Intensity
     eventReference:

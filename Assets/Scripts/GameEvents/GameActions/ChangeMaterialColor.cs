@@ -8,6 +8,7 @@ public class ChangeMaterialColor : MonoBehaviour
     private Dictionary<Color, bool> _colorDict = new Dictionary<Color, bool>();
 
     [SerializeField] private Renderer _renderer;
+    [SerializeField] Color firstColor;
     private Material _material;
 
     private void Awake()
@@ -16,7 +17,15 @@ public class ChangeMaterialColor : MonoBehaviour
             _colorDict.Add(color, false);
 
         _material = _renderer.material;
-        SetColorActive(_colorPriorityList.Count-1);
+
+        if (firstColor != Color.black)
+        {
+            _material.color = firstColor;
+        }
+        else
+        {
+            SetColorActive(_colorPriorityList.Count-1);
+        }
     }
 
     public void SetColorActive(int id)
