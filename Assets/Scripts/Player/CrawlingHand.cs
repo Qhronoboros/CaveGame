@@ -51,6 +51,7 @@ public class CrawlingHand
         if (!isActive) return;
 
         Joint.TryGetPose(out Pose jointPose);
+        if (jointPose == null) return;
 
         Pose jointPoseWS = jointPose.GetTransformedBy(
             new Pose(crawlingParent.origin.transform.position, crawlingParent.origin.transform.rotation));
