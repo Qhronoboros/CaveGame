@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="Bank" id="{a3bb7608-b720-4e60-b8dc-a5d9dee6de68}">
+		<property name="name">
+			<value>Crystal Ruimte</value>
+		</property>
+		<relationship name="folder">
+			<destination>{809b132b-1d43-47c5-b273-6afdfe1ed0af}</destination>
+		</relationship>
+	</object>
+</objects>
