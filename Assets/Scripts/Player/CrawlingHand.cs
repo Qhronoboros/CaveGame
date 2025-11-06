@@ -80,6 +80,7 @@ public class CrawlingHand
         float lastJointPositionMagnitude = _lastJointLocalCameraPositionXZ.magnitude;
         float jointPositionMagnitude = jointLocalCameraPositionXZ.magnitude;
 
+        // forwardMagnitude = Mathf.Max(lastJointPositionMagnitude - jointPositionMagnitude, 0.0f);
         forwardMagnitude = lastJointPositionMagnitude - jointPositionMagnitude;
 
         _lastJointLocalCameraPosition = jointLocalCameraPosition;
