@@ -489,7 +489,10 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
+  - Alleen Ruimte
+  - Ambience Ruimte
   - Cave Ambience
+  - Crystal Ruimte
   - Dialogue 1
   - Dialogue 2
   - Dialogue 3
@@ -497,6 +500,7 @@ MonoBehaviour:
   - Dialogue 5
   - Dialogue 6
   - Horror Intensity
+  - Pitfall Ruimte
   - Rocks
   - Slow Intensity
   - Sparkles

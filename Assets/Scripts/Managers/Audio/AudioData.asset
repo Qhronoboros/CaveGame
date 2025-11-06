@@ -113,3 +113,53 @@ MonoBehaviour:
       Path: event:/Ambience/Cave Ambience
     preInstantiate: 0
     isMusic: 1
+  - audioName: Rocks
+    eventReference:
+      Guid:
+        Data1: -2079158397
+        Data2: 1290397793
+        Data3: 1858100137
+        Data4: -1291290008
+      Path: event:/SFXs/Rocks
+    preInstantiate: 0
+    isMusic: 0
+  - audioName: Alleen Ruimte
+    eventReference:
+      Guid:
+        Data1: -971501643
+        Data2: 1122189051
+        Data3: -2107629162
+        Data4: 1198479314
+      Path: event:/Ambience/Alleen Ruimte
+    preInstantiate: 1
+    isMusic: 0
+  - audioName: Ambience Ruimte
+    eventReference:
+      Guid:
+        Data1: 827560223
+        Data2: 1207276181
+        Data3: -1618376056
+        Data4: -805786380
+      Path: event:/Ambience/Ambience Ruimte
+    preInstantiate: 1
+    isMusic: 0
+  - audioName: Crystal Ruimte
+    eventReference:
+      Guid:
+        Data1: -785284856
+        Data2: 1234499370
+        Data3: -1942932335
+        Data4: 1771008732
+      Path: event:/Ambience/Crystal Ruimte
+    preInstantiate: 1
+    isMusic: 0
+  - audioName: Pitfall Ruimte
+    eventReference:
+      Guid:
+        Data1: 1753739198
+        Data2: 1160753872
+        Data3: -2035200895
+        Data4: 475270308
+      Path: event:/Ambience/Pitfall Ruimte
+    preInstantiate: 1
+    isMusic: 0
