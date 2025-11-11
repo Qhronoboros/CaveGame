@@ -32,7 +32,7 @@ public class AudioManager : MonoBehaviour
 			AudioDataSO.AudioLink audioLink = _audioData.audioLinkList[i];
 			_audioEventsDict.Add(audioLink.audioName, audioLink.eventReference);
 			
-			// If not preInsantiate and isMusic
+			// If not preInsantiate and not isMusic
 			if (!audioLink.preInstantiate && !audioLink.isMusic) continue;
 			
 			CreateEventInstance(audioLink.audioName, out EventInstance instance);
@@ -65,7 +65,7 @@ public class AudioManager : MonoBehaviour
 	}
 	
 	// Detaches all gameObjects from the eventInstance, attach the new given gameObject to the eventInstance, and play the audio
-	public void PlayInstanceAtLocation(EventInstance eventInstance, GameObject gameObject)
+	public void PlayInstanceAttached(EventInstance eventInstance, GameObject gameObject)
 	{
 		RuntimeManager.DetachInstanceFromGameObject(eventInstance);
 		RuntimeManager.AttachInstanceToGameObject(eventInstance, gameObject);
@@ -74,11 +74,11 @@ public class AudioManager : MonoBehaviour
 	
 	// Detaches all gameObjects from the eventInstance with given audioName, attach the new given gameObject to the eventInstance, and play the audio
 	// (Given audio should be instantiated on awake)
-	public void PlayInstanceAtLocation(string audioName, GameObject gameObject)
+	public void PlayInstanceAttached(string audioName, GameObject gameObject)
 	{
 		if (_audioInstancesDict.TryGetValue(audioName, out EventInstance eventInstance))
 		{
-			PlayInstanceAtLocation(eventInstance, gameObject);
+			PlayInstanceAttached(eventInstance, gameObject);
 		}
 		else { Debug.LogError($"Could not find eventInstance in _audioInstancesDict with audioName: {audioName}"); }
 	}

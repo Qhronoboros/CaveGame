@@ -51,6 +51,7 @@ public class CrawlingHand
         if (!isActive) return;
 
         Joint.TryGetPose(out Pose jointPose);
+        if (jointPose == null) return;
 
         Pose jointPoseWS = jointPose.GetTransformedBy(
             new Pose(crawlingParent.origin.transform.position, crawlingParent.origin.transform.rotation));
@@ -59,13 +60,9 @@ public class CrawlingHand
         // XROrigin to World Space
         // Vector3 jointPosePositionWS = jointPose.position + crawlingParent.origin.transform.position;
 
-
         // World Space to Camera
         // Vector3 jointLocalCameraPosition = jointPosePositionWS - Camera.main.transform.position;
         Vector3 jointLocalCameraPosition = jointPoseWS.position - Camera.main.transform.position;
-
-        // ! Maybe try this?
-        Vector3 jointLocalCameraPositionRotated = Camera.main.transform.rotation * jointLocalCameraPosition;
 
         if (_lastJointLocalCameraPosition == Vector3.zero)
         {
@@ -77,12 +74,13 @@ public class CrawlingHand
         Vector2 _lastJointLocalCameraPositionXZ = VectorHelper.Vector3ToVector2(_lastJointLocalCameraPosition);
 
         // Change the turn amount depending on how close the joint is to the camera
-        float turnMultiplier = Mathf.Min(jointLocalCameraPositionXZ.magnitude * 2.0f, 1.0f);
+        float turnMultiplier = Mathf.Min(jointLocalCameraPositionXZ.magnitude * 1.0f, 1.0f);
         turnAmount = Vector2.SignedAngle(_lastJointLocalCameraPositionXZ, jointLocalCameraPositionXZ) * turnMultiplier;
 
         float lastJointPositionMagnitude = _lastJointLocalCameraPositionXZ.magnitude;
         float jointPositionMagnitude = jointLocalCameraPositionXZ.magnitude;
 
+        // forwardMagnitude = Mathf.Max(lastJointPositionMagnitude - jointPositionMagnitude, 0.0f);
         forwardMagnitude = lastJointPositionMagnitude - jointPositionMagnitude;
 
         _lastJointLocalCameraPosition = jointLocalCameraPosition;

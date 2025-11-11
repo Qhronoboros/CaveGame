@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR;
 using UnityEngine.XR.Hands;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Movement;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Turning;
 
@@ -90,6 +91,12 @@ public class Crawling : MonoBehaviour
 
     public void UpdateTotalVelocity()
     {
+        // Vector2 movement = new Vector2(0.0f, (_leftCrawlingHand.forwardMagnitude + _rightCrawlingHand.forwardMagnitude) * _movementMultiplier);
+        // Vector2 turn = new Vector2((_leftCrawlingHand.turnAmount + _rightCrawlingHand.turnAmount) * _movementMultiplier, 0.0f);
+
+        // _continuousMoveProvider.leftHandMoveInput.manualValue = movement;
+        // _continuousTurnProvider.leftHandTurnInput.manualValue = turn;
+        
         _continuousMoveProvider.leftHandMoveInput.manualValue = new Vector2(0.0f, _leftCrawlingHand.forwardMagnitude * _movementMultiplier);
         _continuousTurnProvider.leftHandTurnInput.manualValue = new Vector2(_leftCrawlingHand.turnAmount * _movementMultiplier, 0.0f);
 

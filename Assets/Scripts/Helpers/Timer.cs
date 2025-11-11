@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Timer
 {
-    private bool _looping = false;
-    public bool counting = false;
+    public bool looping = false;
+    public bool active = false;
     
     public float duration = 0.0f;
     public float elapsedTime;
@@ -20,29 +20,11 @@ public class Timer
 	
     public void StartTimer()
     {
-        if (counting)
+        if (active)
             StopTimer();
 
         OnTimerStart?.Invoke();
-        counting = true;
-    }
-
-    public void EnableLooping()
-    {
-        if (!_looping)
-        {
-            _looping = true;
-            OnTimerEnd += StartTimer;
-        }
-    }
-    
-    public void DisableLooping()
-    {
-        if (_looping)
-        {
-            _looping = false;
-            OnTimerEnd -= StartTimer;
-        }
+        active = true;
     }
     
     public void StopTimer()
@@ -53,13 +35,13 @@ public class Timer
     
     private void ResetTimerValues()
     {
-        counting = false;
+        active = false;
         elapsedTime = 0.0f;
     }
     
     public void CountTimer(float deltaTime)
     {
-        if (!counting) return;
+        if (!active) return;
         
         elapsedTime += deltaTime;
         
@@ -67,6 +49,9 @@ public class Timer
         {
             ResetTimerValues();
             OnTimerEnd?.Invoke();
+
+            if (looping)
+                StartTimer();
         }
     }
 }

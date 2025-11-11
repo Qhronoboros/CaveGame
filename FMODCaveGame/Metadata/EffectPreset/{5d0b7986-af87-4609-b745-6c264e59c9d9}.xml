@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="EffectPreset" id="{5d0b7986-af87-4609-b745-6c264e59c9d9}">
+		<property name="name">
+			<value>Dialogue Compressor</value>
+		</property>
+		<relationship name="folder">
+			<destination>{22b0125b-46be-41ee-b805-932d86715b4b}</destination>
+		</relationship>
+		<relationship name="effect">
+			<destination>{8e9c3b14-b247-4154-ab8e-eb84733189b3}</destination>
+		</relationship>
+	</object>
+	<object class="CompressorEffect" id="{8e9c3b14-b247-4154-ab8e-eb84733189b3}">
+		<property name="threshold">
+			<value>-15</value>
+		</property>
+		<property name="ratio">
+			<value>4</value>
+		</property>
+		<property name="attackTime">
+			<value>0.100000001</value>
+		</property>
+		<property name="releaseTime">
+			<value>10</value>
+		</property>
+	</object>
+</objects>

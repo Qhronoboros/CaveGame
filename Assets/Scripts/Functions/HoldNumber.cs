@@ -35,4 +35,13 @@ public class HoldNumber : MonoBehaviour
         _heldValue = value;
         NewHeldValue?.Invoke(value);
     }
+
+    public void ResetValue()
+    {
+        _heldValue = 0.0f;
+        if (_holdNumberFunction == HoldNumberFunction.MIN)
+            _heldValue = Mathf.Infinity;
+        
+        NewHeldValue?.Invoke(_heldValue);
+    }
 }
